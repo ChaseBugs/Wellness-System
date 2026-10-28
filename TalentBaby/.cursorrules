@@ -1,0 +1,708 @@
+# Talent Baby Project - Root Cursor Rules
+
+## Project Overview
+This is a Talent Baby application for baby growing and development tracking, consisting of:
+1. **Android Native Frontend** (`mobile/`) - Mobile app for tracking baby growth and development
+2. **Express.js Backend** (`backend/`) - REST API backend for baby data and user management
+
+## Project Structure
+```
+Talent-Baby/
+├── mobile/                  # Android Native Frontend
+│   ├── app/                # Android application module
+│   │   ├── src/main/       # Main source code
+│   │   │   ├── java/       # Java source files
+│   │   │   └── res/        # Android resources
+│   │   └── build.gradle    # App-level Gradle config
+│   └── build.gradle        # Project-level Gradle config
+│
+└── backend/                # Express.js Backend
+    ├── src/                # TypeScript source code
+    ├── database/           # Database schema and migrations
+    ├── logs/               # Application logs
+    └── package.json        # Node.js dependencies
+```
+
+## Technology Stack
+
+### Frontend (Android)
+- **Language**: Java 8
+- **Min SDK**: 24 (Android 7.0)
+- **Target SDK**: 33 (Android 13)
+- **Architecture**: Activity-based (consider MVVM migration)
+- **Networking**: Retrofit 2.9.0, OkHttp 4.11.0
+- **Database**: Room 2.5.0
+- **MQTT**: Eclipse Paho
+- **UI**: Material Design Components
+
+### Backend (Express.js)
+- **Runtime**: Node.js 18.18.0
+- **Language**: TypeScript 5.3.3
+- **Framework**: Express.js 4.18.2
+- **Database**: PostgreSQL (pg 8.11.3)
+- **Authentication**: JWT (jsonwebtoken 9.0.2)
+- **Validation**: express-validator 7.0.1
+- **Logging**: Winston 3.11.0
+- **API Docs**: Swagger/OpenAPI
+
+## Architecture Patterns
+
+### Backend
+- **Layered Architecture**: Controllers → Services → Repositories → Database
+- **Dependency Injection**: Constructor injection
+- **Repository Pattern**: Abstract database operations
+- **Service Layer**: Business logic separation
+
+### Frontend
+- **Activity-Based**: Current architecture
+- **Repository Pattern**: For data management (TO BE IMPLEMENTED)
+- **MVVM/MVP**: Recommended for future migration
+
+## API Integration
+
+### Base URLs
+- **Development (Emulator)**: `http://10.0.2.2:3004`
+- **Development (Physical Device)**: `http://<local-ip>:3004`
+- **Production**: Configure via environment variables
+
+### Authentication
+- **Method**: JWT Bearer Token
+- **Flow**: Signup → Login → Store Token → Include in Headers
+- **Header Format**: `Authorization: Bearer <token>`
+- **Token Storage**: SharedPreferences (Android), consider Android Keystore for production
+
+### API Endpoints
+See individual `.cursorrules` files in `backend/` and `mobile/` for detailed endpoint documentation.
+
+## Data Flow
+
+### Baby Growth Tracking Flow
+1. User authenticates (signup/login) → Receives JWT token
+2. App stores token locally (SharedPreferences)
+3. App fetches baby profile from backend → `GET /api/v1/babies`
+4. App caches baby data locally (Room Database)
+5. User records growth milestone → App sends data via API
+6. Growth data updates → Backend receives update → App syncs via API
+7. App displays updated growth charts and milestones
+
+### Data Synchronization
+- **Online**: Sync local cache with backend
+- **Offline**: Use cached data, queue operations for later sync
+- **Conflict Resolution**: Server wins or last-write-wins strategy
+
+## Development Workflow
+
+### Backend Development
+1. Ensure Node.js 18.18.0 is installed
+2. Create `.env` file with required variables
+3. Setup PostgreSQL database and run schema.sql
+4. Install dependencies: `npm install` or `pnpm install`
+5. Run development server: `npm run dev`
+6. Access Swagger UI: `http://localhost:3004/api-docs`
+
+### Frontend Development
+1. Open project in Android Studio
+2. Sync Gradle files
+3. Ensure backend is running
+4. Update API base URL if needed
+5. Run on emulator or physical device
+6. Test API integration
+
+## Common Tasks
+
+### Adding a New API Endpoint
+1. **Backend**:
+   - Add route in `src/routes/`
+   - Add controller method in `src/controllers/`
+   - Add service method in `src/services/`
+   - Add repository method in `src/repositories/`
+   - Add validation in `src/validators/`
+   - Document in Swagger (JSDoc annotations)
+   - Test endpoint
+
+2. **Frontend**:
+   - Add Retrofit interface method in `network/api/`
+   - Add API service method in `network/services/`
+   - Create/update response models
+   - Update UI to use new endpoint
+   - Handle errors appropriately
+
+### Adding a New Feature
+1. **Backend**:
+   - Update database schema if needed
+   - Update models/interfaces
+   - Update validation schemas
+   - Update Swagger documentation
+
+2. **Frontend**:
+   - Update data models
+   - Add UI components
+   - Implement feature-specific logic
+   - Update adapters if needed
+
+## Code Standards
+
+### General
+- Follow existing code style and patterns
+- Write self-documenting code
+- Add comments for complex logic
+- Handle errors gracefully
+- Use meaningful variable and function names
+
+### Backend
+- Use TypeScript strict mode
+- Follow layered architecture
+- Validate all inputs
+- Use proper HTTP status codes
+- Document all endpoints in Swagger
+- Log important events
+
+### Frontend
+- Follow Java naming conventions
+- Extract strings to resources
+- Use Material Design components
+- Handle network errors
+- Test on multiple screen sizes
+- Follow Android best practices
+
+## Testing
+
+### Backend
+- Unit tests for services and utilities
+- Integration tests for API endpoints
+- Test error scenarios
+- Test authentication and authorization
+
+### Frontend
+- Unit tests for business logic
+- Integration tests for API calls
+- UI tests for critical flows
+- Test error handling
+
+## Security Considerations
+
+### Backend
+- JWT token authentication
+- Password hashing with bcryptjs
+- Input validation and sanitization
+- SQL injection prevention (parameterized queries)
+- CORS configuration
+- Helmet for security headers
+- Rate limiting (consider implementing)
+
+### Frontend
+- Secure token storage (consider Android Keystore)
+- HTTPS for all API calls
+- Input validation
+- Certificate pinning (consider for production)
+- Secure data handling for baby information
+
+## Performance
+
+### Backend
+- Database connection pooling
+- Query optimization with indexes
+- Response compression
+- Pagination for list endpoints
+
+### Frontend
+- RecyclerView optimization
+- Image loading and caching
+- Background threads for network calls
+- Memory leak prevention
+- Lazy loading and pagination
+
+## Documentation
+
+### Documentation Structure
+- **Root README.md**: Project overview, quick start, architecture
+- **Backend README.md**: Backend setup, API endpoints, development guide
+- **Mobile README.md**: Mobile app setup, features, development guide
+- **Swagger UI**: Interactive API documentation at `/api-docs`
+- **Code Comments**: JSDoc for backend, JavaDoc for mobile app
+
+### Documentation Maintenance Rules
+
+**IMPORTANT: When adding new features or making changes, you MUST update documentation:**
+
+1. **When Adding New API Endpoints**:
+   - Add endpoint to Swagger documentation (JSDoc comments in route files)
+   - Update backend README.md with endpoint description
+   - Update root README.md API endpoints section
+   - Add request/response examples if complex
+
+2. **When Adding New Features to Mobile App**:
+   - Update mobile README.md features section
+   - Document new screens/activities
+   - Update mock data documentation if applicable
+   - Add usage examples for complex features
+
+3. **When Changing Database Schema**:
+   - Create migration file with descriptive name
+   - Add migration to `migrations.ts`
+   - Update backend README.md database schema section
+   - Document new tables/columns in comments
+
+4. **When Adding New Dependencies**:
+   - Update README.md with new dependency
+   - Document why it's needed
+   - Update setup instructions if needed
+
+5. **When Changing Configuration**:
+   - Update `.env` example in README
+   - Document new environment variables
+   - Update setup instructions
+
+6. **Documentation File Locations**:
+   - Root: `README.md` - Main project documentation
+   - Backend: `backend/README.md` - Backend-specific docs
+   - Mobile: `mobile/README.md` - Mobile app docs
+
+7. **Documentation Format**:
+   - Use Markdown format
+   - Include code examples
+   - Add table of contents for long documents
+   - Use emojis for visual organization (optional)
+   - Keep examples up-to-date
+
+8. **Before Committing**:
+   - Review all documentation changes
+   - Ensure examples work
+   - Check for broken links
+   - Verify formatting is correct
+
+## Environment Configuration
+
+### Backend
+- Use `.env` file (never commit)
+- Required variables documented in README
+- Environment-specific configurations
+
+### Frontend
+- BuildConfig for API URLs
+- Resources for configuration
+- Different build variants for environments
+
+## When Working on This Project
+
+1. **Read the specific `.cursorrules`** in each subdirectory for detailed guidelines
+2. **Follow the established architecture** and patterns
+3. **Maintain consistency** across both frontend and backend
+4. **Test integration** between frontend and backend
+5. **Update documentation** when adding features
+6. **Handle errors gracefully** on both sides
+7. **Consider offline functionality** in the mobile app
+8. **Keep API contracts** in sync between frontend and backend
+9. **Use proper logging** for debugging
+10. **Follow security best practices**
+
+## Integration Points
+
+### Authentication
+- Backend provides JWT tokens
+- Frontend stores and uses tokens
+- Token expiration handling
+
+### Baby Data Management
+- Backend stores baby growth data
+- Frontend displays and tracks baby development
+- Real-time updates via API or polling
+
+### Data Synchronization
+- Backend is source of truth
+- Frontend caches for offline use
+- Sync on app start and periodically
+
+## Settings & Profile Management
+
+### User Profile Settings
+- **My Profile Screen**: Editable profile information including:
+  - Profile picture with edit functionality
+  - Full Name (editable text field)
+  - Email (read-only or editable based on requirements)
+  - Phone Number (with country code selector)
+  - Gender (dropdown selection)
+  - Birthdate (date picker)
+- **Database**: Store in `users` table with proper validation
+- **API Endpoints**: 
+  - `GET /api/v1/users/profile` - Get user profile
+  - `PUT /api/v1/users/profile` - Update user profile
+  - `POST /api/v1/users/profile/picture` - Update profile picture
+
+### Baby Profile Management
+- **Baby Profile Screen**: Baby information including:
+  - Baby name
+  - Birth date
+  - Gender
+  - Birth weight and height
+  - Profile picture
+  - Growth milestones
+- **Database**: Store in `babies` table with proper validation
+- **API Endpoints**:
+  - `GET /api/v1/babies` - Get baby profiles
+  - `POST /api/v1/babies` - Create baby profile
+  - `PUT /api/v1/babies/:id` - Update baby profile
+  - `DELETE /api/v1/babies/:id` - Delete baby profile
+
+### Notification Settings
+- **Notifications Screen**: Toggle switches for various notification types:
+  - Growth Milestone Alerts
+  - Vaccination Reminders
+  - Development Milestone Alerts
+  - Health Check Reminders
+  - Photo Memories
+  - App Updates
+- **Database**: Store in `user_notification_preferences` table
+- **API Endpoints**:
+  - `GET /api/v1/users/notifications/preferences` - Get notification preferences
+  - `PUT /api/v1/users/notifications/preferences` - Update notification preferences
+
+### Internationalization (i18n)
+- **Supported Languages**: English (default) and Korean
+- **Resource Structure**:
+  - English strings: `res/values/strings.xml` (default)
+  - Korean strings: `res/values-ko/strings.xml`
+  - Android automatically selects the appropriate language based on device locale
+- **String Resources**:
+  - **ALWAYS use string resources** (`@string/string_name`) instead of hardcoded text
+  - All user-facing text must be in `strings.xml`
+  - Use `getString(R.string.string_name)` in Java code
+  - Use `@string/string_name` in XML layouts
+- **Adding New Strings**:
+  1. Add English string to `res/values/strings.xml`
+  2. Add Korean translation to `res/values-ko/strings.xml`
+  3. Use the same `name` attribute for both
+  4. Never hardcode text directly in layouts or Java code
+
+### UI Design Guidelines
+- **Color Scheme**: 
+  - Use warm, baby-friendly colors
+  - Primary accent: Soft pastels or warm colors
+  - Text: High contrast for readability
+  - Error/Danger: Appropriate warning colors
+- **Typography**:
+  - Use clear, readable fonts
+  - Consistent font family across all UI screens
+  - Appropriate font sizes for different content types
+- **Structure**:
+  - Consistent padding: 24dp for main content, 16dp for cards
+  - Card corner radius: 12-16dp
+  - Toggle switches: Material Design Switch component
+  - Text fields: Material Design TextInputLayout with proper styling
+  - Icons: Appropriate size, clear and intuitive
+
+## Future Enhancements
+
+### Backend
+- WebSocket support for real-time updates
+- Rate limiting
+- Caching layer (Redis)
+- Image upload and storage
+- Analytics and reporting
+
+### Frontend
+- Complete API integration
+- Room Database implementation
+- Offline mode with sync
+- Push notifications
+- MVVM architecture migration
+- Growth chart visualization
+- Photo gallery and memories
+
+---
+
+## 📋 FINAL FEATURE LIST - Development Roadmap
+
+**Reference**: See `FINAL_FEATURE_LIST.md` for complete feature documentation
+
+### ✅ CORE FEATURES (MVP - Must Have) - Priority for Implementation
+
+#### 1. Baby Tracker (BabyTracker) ⚠️ **MUST HAVE**
+**From Must.md**: Sleep, Feed, Pump, Diapers, Growth
+
+**Backend Status**: ✅ Implemented
+**Mobile Status**: ⏳ To be implemented
+
+**Features**:
+- Feeding Tracker (breastfeeding, formula, pump, solids)
+- Sleep Tracker (naps, bedtime, patterns)
+- Diaper Tracker (wet/dirty, daily summary)
+- Growth Tracker (weight, height, head circumference, WHO charts)
+
+**API Endpoints**:
+- `/api/v1/feeding` - Feeding records
+- `/api/v1/sleep` - Sleep sessions
+- `/api/v1/diaper` - Diaper changes
+- `/api/v1/growth` - Growth records
+
+---
+
+#### 2. Growth Tracking & Charts 📈
+**Backend Status**: ✅ Implemented
+**Mobile Status**: ⏳ To be implemented
+
+**Features**: Interactive charts, WHO percentiles, trends, export, sharing
+
+---
+
+#### 3. Activity System 🎯
+**From Must.md**: Activity (Milestone), Playful Skill Development (Kinedu)
+
+**Backend Status**: ✅ Partially implemented
+**Mobile Status**: ⏳ To be implemented
+
+**Features**:
+- Activity library (1,000+ from BabyG, 1,800+ from Kinedu)
+- Video-based activity guides
+- Activity completion tracking
+- Activity categories (Physical, Cognitive, Communication, Social-Emotional)
+- Activity completion with video proof ⭐ **UNIQUE**
+
+---
+
+#### 4. Personalized Daily Plan 📅
+**Backend Status**: ✅ Implemented
+**Mobile Status**: ⏳ To be implemented
+
+**Features**: Daily activity recommendations (3-5 per day), age-based filtering, talent-based recommendations, plan customization
+
+**API Endpoints**:
+- `/api/v1/daily-plan` - Daily plan generation and management
+- `/api/v1/daily-updates` - Daily tips and updates
+
+---
+
+#### 5. Milestones & Knowledge 📚
+**From Must.md**: Milestone (Activity, Knowledge)
+
+**Backend Status**: ✅ Partially implemented
+**Mobile Status**: ⏳ To be implemented
+
+**Features**:
+- Milestone tracking (Physical, Linguistic, Cognitive, Social Emotional)
+- Step-by-step milestone progression
+- Milestone via video (attach videos to milestones)
+- Skills to reinforce
+- Personalized weekly milestone programs
+
+---
+
+#### 6. Video Content System 🎥
+**From Must.md**: Activity videos, Milestone videos
+
+**Backend Status**: ✅ Implemented
+**Mobile Status**: ⏳ To be implemented
+
+**Features**:
+- Video upload & storage
+- Video timeline & player
+- Video-milestone associations
+- Video-activity associations ⭐ **UNIQUE**
+- Video thumbnails and playback controls
+
+**API Endpoints**:
+- `/api/v1/video/upload` - Video upload
+- `/api/v1/video/link/milestone` - Link video to milestone
+- `/api/v1/video/link/activity` - Link video to activity
+
+---
+
+#### 7. Recipe & Nutrition System 🥗
+**From Must.md**: Nutrition (BabyG) - Recipes for baby & mom
+
+**Backend Status**: ✅ Implemented
+**Mobile Status**: ⏳ To be implemented
+
+**Features**: Recipe library, age-appropriate recommendations, BLW meal plans, pureed food recipes, recipe favorites
+
+**API Endpoints**:
+- `/api/v1/recipes` - Recipe management
+
+---
+
+#### 8. Content Library 📚
+**From Must.md**: Articles (BabyG, Kinedu), Stories (BabyG), Browse by Topic (Kinedu)
+
+**Backend Status**: ✅ Partially implemented
+**Mobile Status**: ⏳ To be implemented
+
+**Features**:
+- Expert Articles Library (categories, search, bookmarks)
+- Bedtime Stories (audio stories, categories, favorites)
+- Browse by Topic (content organization, topic-based discovery)
+
+**API Endpoints**:
+- `/api/v1/articles` - Articles management
+- Bedtime Stories API: ⏳ To be implemented
+
+---
+
+#### 9. Expert Classes & Courses 🎓
+**From Must.md**: Courses (Kinedu)
+
+**Backend Status**: ✅ Implemented
+**Mobile Status**: ⏳ To be implemented
+
+**Features**: Expert classes, live classes, on-demand classes, class video playback
+
+**API Endpoints**:
+- `/api/v1/expert-classes` - Expert classes management
+
+---
+
+#### 10. Guides 📖
+**From Must.md**: Sleep Guide, Feeding Guide
+
+**Backend Status**: ⏳ To be implemented
+**Mobile Status**: ⏳ To be implemented
+
+**Features**:
+- Sleep Guide (educational content, tips by age, schedule recommendations)
+- Feeding Guide (educational content, tips by age, nutrition info, "Is Your Baby Getting Enough?" assessment)
+
+---
+
+#### 11. Memories & Timeline 📸
+**From Must.md**: Memories (Tools)
+
+**Backend Status**: ✅ Partially implemented
+**Mobile Status**: ⏳ To be implemented
+
+**Features**: Photo/video timeline, memory organization, search, export, sharing, favorites
+
+---
+
+#### 12. Talent Development System ⭐ **UNIQUE**
+**From Must.md**: Explore First Hobbies (Kinedu)
+
+**Backend Status**: ✅ Implemented
+**Mobile Status**: ⏳ To be implemented
+
+**Features**: Talent assessments (7 categories), talent analysis, progress tracking, talent missions, comparison charts
+
+**API Endpoints**:
+- `/api/v1/talents` - Talent assessments and analysis
+
+---
+
+### 📱 BASIC FEATURES (Enhanced Experience)
+
+#### 13. Pregnancy Tracking 🤰
+**Backend Status**: ✅ Implemented
+**Mobile Status**: ⏳ To be implemented
+
+#### 14. Tools & Calculators 🛠️
+**Backend Status**: ✅ Partially implemented
+**Mobile Status**: ⏳ To be implemented
+
+#### 15. Notifications & Reminders ⏰
+**Backend Status**: ✅ Partially implemented
+**Mobile Status**: ⏳ To be implemented
+
+---
+
+### 🚀 FULL FEATURES (Complete Experience)
+
+#### 16. Community & Forums 👥
+**Backend Status**: ✅ Implemented
+**Mobile Status**: ⏳ To be implemented
+
+#### 17. Reports & Analytics 📊
+**Backend Status**: ✅ Implemented
+**Mobile Status**: ⏳ To be implemented
+
+#### 18. Baby Registry 🛒
+**Backend Status**: ✅ Implemented
+**Mobile Status**: ⏳ To be implemented
+
+#### 19. Family Sharing 👨‍👩‍👧‍👦
+**Backend Status**: ✅ Implemented
+**Mobile Status**: ⏳ To be implemented
+
+---
+
+## 🎯 IMPLEMENTATION PRIORITY
+
+### Phase 1: Core Must-Have Features (2-3 months)
+**Focus**: MVP with all Must.md features
+
+1. ✅ Baby Tracker (Sleep, Feed, Pump, Diapers, Growth)
+2. ✅ Growth Tracker
+3. ✅ Activity System
+4. ✅ Personalized Daily Plan
+5. ✅ Milestones & Knowledge
+6. ✅ Video Content System
+7. ✅ Recipe & Nutrition System
+8. ✅ Content Library (Articles, Stories)
+9. ✅ Expert Classes
+10. ✅ Guides (Sleep, Feeding)
+11. ✅ Memories & Timeline
+12. ✅ Talent Development System
+
+### Phase 2: Enhanced Features (1-2 months)
+1. Pregnancy Tracking
+2. Tools & Calculators
+3. Notifications & Reminders
+
+### Phase 3: Full Features (2-3 months)
+1. Community & Forums
+2. Reports & Analytics
+3. Baby Registry
+4. Family Sharing
+
+---
+
+## ⭐ UNIQUE FEATURES (Competitive Advantage)
+
+1. **Video to Activities** - No competitor has this!
+2. **Talent Development System** - 7 talent categories with assessments
+3. **Talent-Focused Video Timeline** - Filter videos by talent category
+4. **Activity Completion Videos** - Video proof of activity mastery
+5. **Talent Assessment Videos** - Visual evidence for assessments
+
+---
+
+## 📊 FEATURE MAPPING: Must.md → Implementation
+
+| Must.md Feature | Mapped To | Backend | Mobile |
+|----------------|-----------|---------|--------|
+| **BabyG: Weight** | Growth Tracker | ✅ | ⏳ |
+| **BabyG: Nutrition** | Recipe & Nutrition System | ✅ | ⏳ |
+| **BabyG: Stories** | Bedtime Stories | ⏳ | ⏳ |
+| **BabyG: Articles** | Expert Articles Library | ✅ | ⏳ |
+| **Kinedu: Courses** | Expert Classes | ✅ | ⏳ |
+| **Kinedu: Browse by Topic** | Content Library | ⏳ | ⏳ |
+| **Kinedu: Articles** | Expert Articles Library | ✅ | ⏳ |
+| **Kinedu: Playful Skill Development** | Activity System | ✅ | ⏳ |
+| **Kinedu: Explore First Hobbies** | Talent Development System | ✅ | ⏳ |
+| **Milestone: Activity** | Activity System | ✅ | ⏳ |
+| **Milestone: Knowledge** | Content Library + Guides | ⏳ | ⏳ |
+| **Milestone: BabyTracker** | Baby Tracker | ✅ | ⏳ |
+| **Tools: Memories** | Memories & Timeline | ✅ | ⏳ |
+| **Tools: Growth Tracker** | Growth Tracking & Charts | ✅ | ⏳ |
+| **Tools: Sleep Guide** | Sleep Guide | ⏳ | ⏳ |
+| **Tools: Feeding Guide** | Feeding Guide | ⏳ | ⏳ |
+
+---
+
+## 📝 DEVELOPMENT NOTES
+
+### Backend Implementation Status
+- ✅ **Implemented**: ~50+ features (most core features)
+- ⏳ **To Implement**: 
+  - Sleep Guide content API
+  - Feeding Guide content API
+  - Bedtime Stories API
+  - Content browsing by topic enhancement
+
+### Mobile Implementation Status
+- ⏳ **All Features**: To be implemented
+- **Priority**: Start with Phase 1 Core Features
+
+### When Implementing Features
+1. **Check FINAL_FEATURE_LIST.md** for complete feature specifications
+2. **Follow existing backend patterns** (Repository → Service → Controller → Route)
+3. **Follow existing mobile patterns** (Activity → API Service → Models → UI)
+4. **Update API documentation** (Swagger for backend)
+5. **Test integration** between mobile and backend
+6. **Update status** in FINAL_FEATURE_LIST.md when complete

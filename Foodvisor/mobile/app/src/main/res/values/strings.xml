@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Foodvisor</string>
+    <string name="daily_targets_api_base">http://10.0.2.2:4000/api</string>
+</resources>

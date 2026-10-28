@@ -1,0 +1,12 @@
+{
+  "name": "foodvisor-platform",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix web-admin",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:admin": "npm --prefix web-admin run dev",
+    "build": "npm --prefix backend run build && npm --prefix web-admin run build",
+    "seed": "npm --prefix backend run seed"
+  }
+}

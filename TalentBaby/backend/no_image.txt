@@ -1,0 +1,144 @@
+1|Tummy Time
+2|Track the Toy
+3|Sing a Lullaby
+4|Eye Contact Game
+5|Hand Grasp Exploration
+6|Talk to Me
+7|Gentle Stretching
+8|Mirror Discovery
+9|Texture Touch Blanket
+10|Baby Coo Response
+11|Finger Puppet Play
+12|Reach for Rattle
+13|Supported Sitting Practice
+14|Object Permanence Peek
+15|Babbling Response Game
+16|Sensory Bottle Exploration
+17|Rolling Over Practice
+18|Pat-a-Cake Rhyme
+19|Cause and Effect Toys
+20|Supported Standing
+21|Name Recognition Game
+22|Stranger Comfort
+23|Texture Food Introduction
+24|Bilat Arm Clapping
+25|Crawling Encouragement
+26|Shape Sorter Introduction
+27|First Words Pointing
+28|Pull to Stand Practice
+29|Pincer Grasp Practice
+30|Memory Matching Game
+31|Wave Bye-Bye
+32|Stacking Cups
+33|Music and Movement
+34|Articulation Sounds Practice
+35|Cause and Effect Banging
+36|Social Smile Imitation
+37|Cruising Along Furniture
+38|Simple Puzzle Play
+39|First Words Encouragement
+40|Ball Roll Back-and-Forth
+41|Scribbling with Crayons
+42|Body Part Naming
+43|Imitation Play
+44|Walking with Support
+45|Simple Story Telling
+46|Emotion Mirror Play
+47|Container Fill and Empty
+48|Clapping Rhythm Songs
+49|Independent Walking Practice
+50|Color Sorting Game
+51|Two-Word Request Practice
+52|Simple Puzzle Solving
+53|Block Building
+54|Pretend Play Kitchen
+55|Simple Instructions Following
+56|Outdoor Walk Exploration
+57|Parallel Play Playdate
+58|Big Emotions Naming
+59|Finger Dexterity Threading
+60|Scribble to Drawing
+61|Running and Stopping Game
+62|Animal Sound Matching
+63|Three-Word Sentence Practice
+64|Memory Book Making
+65|Obstacle Course Navigation
+66|Pretend Play Dressing
+67|Question Answering Practice
+68|Finger Painting
+69|Helping with Chores
+70|Feelings Book Reading
+71|Shape Tracing
+72|Thinking Out Loud
+73|Kicking a Ball
+74|Number Concept Introduction
+75|Story Retelling
+76|Balance Beam Walking
+77|Scissor Skills Introduction
+78|Nature Exploration Journal
+79|Dramatic Play Characters
+80|Why and How Questions
+81|Peer Play Cooperation
+82|Proud Moment Sharing
+83|Threading and Lacing
+84|Spatial Concept Play
+85|Jumping Practice
+86|Opposite Concepts
+87|Conversation Practice
+88|Controlled Drawing
+89|Memory Sequence Game
+90|Collaborative Building
+91|Concept of Sharing Practice
+92|Nature Sorting
+93|Fantasy Story Creation
+94|Following Multi-Step Instructions
+95|Throwing and Catching
+96|Understanding Reasoning
+97|Tricycle Riding
+98|Size Sequencing
+99|Show and Tell Practice
+100|Stair Climbing Independence
+101|Handwriting Readiness
+102|Memory Card Matching
+103|Creative Story Extension
+104|Explaining Thinking
+105|Peer Conflict Resolution
+106|Feelings Vocabulary Expansion
+107|Two-Handed Coordination
+108|World Knowledge Questions
+109|Hopping on One Foot
+110|Pattern Recognition and Creation
+111|Full Sentence Storytelling
+112|Throwing with Aim
+113|Matching Letters to Words
+114|Original Song Creation
+115|Perspective-Taking Stories
+116|Community Helper Role Play
+117|Independence Encouragement
+118|Fine Motor Precision Tools
+119|Complex Pattern Clapping
+120|Basic Science Experiments
+121|Skipping Introduction
+122|Subtraction Concept
+123|Complex Multi-Sentence Stories
+124|Skipping Rope Introduction
+125|Letter Formation Practice
+126|Advanced Memory Game
+127|Imaginative World Building
+128|Debate and Justification
+129|Team Cooperation Games
+130|Personal Goal Setting
+131|Spatial Reasoning Puzzles
+132|Growth Mindset Stories
+133|Pumping Swing Independently
+134|Addition Concept
+135|Full Narrative Monologue
+136|Complex Obstacle Course
+137|Scissor Cutting Precision
+138|Strategic Memory Games
+139|World-Building Narrative Play
+140|Constructive Argument Practice
+141|Community Project Participation
+142|Resilience Through Failure
+143|Letter Sequence Recognition
+144|Comparative and Superlative Language

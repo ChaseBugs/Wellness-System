@@ -1,0 +1,138 @@
+model foods {
+  id                Int                @id @default(autoincrement())
+  name              String             @db.VarChar(255)
+  name_ko           String?            @db.VarChar(255)
+  category          String             @db.VarChar(100)
+  calories_per_100g Decimal            @db.Decimal(8, 2)
+  protein_per_100g  Decimal?           @default(0) @db.Decimal(8, 2)
+  fat_per_100g      Decimal?           @default(0) @db.Decimal(8, 2)
+  carbs_per_100g    Decimal?           @default(0) @db.Decimal(8, 2)
+  fiber_per_100g    Decimal?           @default(0) @db.Decimal(8, 2)
+  sugar_per_100g    Decimal?           @default(0) @db.Decimal(8, 2)
+  sodium_per_100g   Decimal?           @default(0) @db.Decimal(8, 2)
+  calcium_per_100g  Decimal?           @default(0) @db.Decimal(8, 2)
+  iron_per_100g     Decimal?           @default(0) @db.Decimal(8, 2)
+  is_baby_food      Boolean?           @default(false)
+  min_age_months    Int?
+  allergens         String[]           @default([])
+  created_at        DateTime?          @default(now()) @db.Timestamp(6)
+  food_intake_logs  food_intake_logs[]
+  meal_plan_foods   meal_plan_foods[]
+
+  @@index([category], map: "idx_foods_category")
+  @@index([is_baby_food], map: "idx_foods_is_baby_food")
+  @@index([name], map: "idx_foods_name")
+}
+
+model food_intake_logs {
+  id         Int       @id @default(autoincrement())
+  baby_id    Int?
+  user_id    Int
+  food_id    Int
+  log_date   DateTime  @default(dbgenerated("CURRENT_DATE")) @db.Date
+  meal_type  String    @default("snack") @db.VarChar(20)
+  amount_g   Decimal   @db.Decimal(8, 2)
+  notes      String?
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  calories   Decimal?  @db.Decimal(8, 2)
+  babies     babies?   @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  foods      foods     @relation(fields: [food_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users      users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([baby_id, log_date], map: "idx_food_intake_logs_baby_date")
+  @@index([user_id, log_date], map: "idx_food_intake_logs_user_date")
+}
+
+model calorie_recommendations {
+  id             Int       @id @default(autoincrement())
+  age_min_months Int
+  age_max_months Int
+  gender         String?   @default("all") @db.VarChar(10)
+  kcal_per_day   Int
+  protein_g      Decimal?  @db.Decimal(5, 1)
+  fat_g          Decimal?  @db.Decimal(5, 1)
+  carbs_g        Decimal?  @db.Decimal(5, 1)
+  calcium_mg     Decimal?  @db.Decimal(7, 1)
+  iron_mg        Decimal?  @db.Decimal(5, 1)
+  label          String?   @db.VarChar(100)
+  created_at     DateTime? @default(now()) @db.Timestamp(6)
+
+  @@index([age_min_months, age_max_months], map: "idx_calorie_rec_age")
+}
+
+model daily_calorie_summary {
+  id             Int       @id @default(autoincrement())
+  baby_id        Int?
+  user_id        Int
+  summary_date   DateTime  @db.Date
+  total_calories Decimal?  @default(0) @db.Decimal(8, 2)
+  total_protein  Decimal?  @default(0) @db.Decimal(8, 2)
+  total_fat      Decimal?  @default(0) @db.Decimal(8, 2)
+  total_carbs    Decimal?  @default(0) @db.Decimal(8, 2)
+  meal_count     Int?      @default(0)
+  updated_at     DateTime? @default(now()) @db.Timestamp(6)
+  babies         babies?   @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users          users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([baby_id, summary_date])
+  @@unique([user_id, summary_date, baby_id])
+}
+
+model nutrition_categories {
+  id              Int               @id @default(autoincrement())
+  name            String            @db.VarChar(100)
+  description     String?
+  icon_url        String?
+  sort_order      Int               @default(0)
+  created_at      DateTime?         @default(now()) @db.Timestamp(6)
+  language        String            @default("en") @db.Char(2)
+  nutrition_foods nutrition_foods[]
+
+  @@index([language], map: "idx_nutrition_cats_lang")
+}
+
+model nutrition_foods {
+  id                   Int                  @id @default(autoincrement())
+  category_id          Int
+  name                 String               @db.VarChar(150)
+  description          String?
+  image_url            String?
+  is_vegetarian        Boolean              @default(true)
+  age_groups           String?
+  sort_order           Int                  @default(0)
+  created_at           DateTime?            @default(now()) @db.Timestamp(6)
+  language             String               @default("en") @db.Char(2)
+  nutrition_categories nutrition_categories @relation(fields: [category_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([category_id], map: "idx_nutrition_foods_category")
+  @@index([language], map: "idx_nutrition_foods_lang")
+}
+
+model meal_plan_templates {
+  id                Int               @id @default(autoincrement())
+  age_min_months    Int
+  age_max_months    Int
+  meal_type         String            @db.VarChar(20)
+  title             String            @db.VarChar(255)
+  description       String?
+  total_kcal_approx Int?
+  stage_label       String?           @db.VarChar(50)
+  sort_order        Int?              @default(0)
+  created_at        DateTime?         @default(now()) @db.Timestamp(6)
+  meal_plan_foods   meal_plan_foods[]
+
+  @@index([age_min_months, age_max_months], map: "idx_meal_plan_templates_age")
+}
+
+model meal_plan_foods {
+  id                  Int                 @id @default(autoincrement())
+  template_id         Int
+  food_id             Int
+  recommended_g       Decimal             @db.Decimal(6, 1)
+  unit                String?             @default("g") @db.VarChar(10)
+  notes               String?
+  foods               foods               @relation(fields: [food_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  meal_plan_templates meal_plan_templates @relation(fields: [template_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([template_id], map: "idx_meal_plan_foods_template")
+}

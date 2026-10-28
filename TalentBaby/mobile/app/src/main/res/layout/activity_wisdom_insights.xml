@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="310dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_home_header"
+            android:orientation="vertical"
+            android:paddingStart="28dp"
+            android:paddingTop="120dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="38dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnBackWisdom"
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Back"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_arrow_back"
+                    android:tint="@color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:text="@string/library_wisdom"
+                    android:textColor="@color/home_text_dark"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginTop="18dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingEnd="28dp">
+
+                <TextView
+                    android:id="@+id/tabWisdomMonth0To5"
+                    android:layout_width="190dp"
+                    android:layout_height="58dp"
+                    android:background="@drawable/bg_date_selected"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/wisdom_month_0_5"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/tabWisdomMonth6To11"
+                    android:layout_width="0dp"
+                    android:layout_height="58dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/wisdom_month_6_11"
+                    android:textColor="@color/home_text_muted"
+                    android:textSize="22sp" />
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginTop="16dp"
+                android:overScrollMode="never"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/layoutWisdomCategories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingEnd="28dp">
+
+                    <TextView
+                        android:id="@+id/chipAll"
+                        style="@style/WisdomChip"
+                        android:background="@drawable/bg_white_pill"
+                        android:text="@string/all_categories"
+                        android:textColor="@color/article_header" />
+
+                    <TextView
+                        android:id="@+id/chipBabyHealth"
+                        style="@style/WisdomChip"
+                        android:text="@string/baby_health" />
+
+                    <TextView
+                        android:id="@+id/chipFunMemories"
+                        style="@style/WisdomChip"
+                        android:text="@string/wisdom_fun_memories" />
+
+                    <TextView
+                        android:id="@+id/chipGrowth"
+                        style="@style/WisdomChip"
+                        android:text="@string/health_growth" />
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_gravity="bottom"
+            android:contentDescription=""
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_activity_header_curve" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingStart="26dp"
+        android:paddingEnd="26dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_search_outline"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:contentDescription=""
+                    android:src="@drawable/ic_search_gray" />
+
+                <EditText
+                    android:id="@+id/editWisdomSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/story_search_hint"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:textColor="@color/home_text_dark"
+                    android:textColorHint="#9B9B9B"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:background="@drawable/circle_outline_teal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:contentDescription=""
+                    android:src="@drawable/ic_bookmark_outline" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="22dp"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerWisdomArticles"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="24dp" />
+
+            <ProgressBar
+                android:id="@+id/progressWisdom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/article_header"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textWisdomEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/no_articles"
+                android:textColor="@color/home_text_muted"
+                android:textSize="16sp"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,252 @@
+# ==============================================
+# 1. Operating System & Editor Files
+# ==============================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/
+
+# IntelliJ IDEA / Android Studio
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+gen/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ==============================================
+# 2. MERN Stack - Node.js / Express (Backend)
+# ==============================================
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+Videos/
+
+.env
+.env.local
+.env.*.local
+*.env
+
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+coverage/
+.nyc_output/
+.grunt/
+.coveralls.yml
+
+dist/
+build/
+bundle/
+.vite/
+.next/
+.nuxt/
+
+tmp/
+temp/
+*.tmp
+*.temp
+
+# ==============================================
+# 3. MERN Stack - React (Frontend) Specific
+# ==============================================
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+
+# ==============================================
+# 4. MongoDB Specific
+# ==============================================
+/data/db/
+/data/mongo/
+dump/
+mongodump/
+
+# ==============================================
+# 5. Android Native (Java/Kotlin) Specific
+# ==============================================
+.gradle/
+build/
+/*/build/
+local.properties
+proguard/
+captures/
+.navigation/
+.externalNativeBuild
+*.jks
+*.keystore
+secret.properties
+freeline.py
+freeline/
+freeline_project_description.json
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+fastlane/readme.md
+
+# ==============================================
+# 6. C++ Game Server (Backend)
+# ==============================================
+# Compiled Object files
+*.o
+*.obj
+*.slo
+*.lo
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# CMake build artifacts
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+_deps/
+compile_commands.json
+
+# Visual Studio
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+*.suo
+*.user
+*.sdf
+*.opensdf
+*.db
+*.opendb
+.vs/
+Win32/
+x64/
+Debug/
+Release/
+packages/
+
+# Xcode
+*.xcodeproj
+*.xcworkspace
+*.xcuserstate
+xcuserdata/
+DerivedData/
+
+# Ninja
+.ninja_deps
+.ninja_log
+build.ninja
+.ninja
+
+# Conan (C++ Package Manager)
+conanbuildinfo.*
+conaninfo.txt
+conanbuild.*
+conanbuild.*.bat
+conanbuild.*.sh
+conanbuild.*.ps1
+
+# Google Test / Catch2
+*.trs
+*.log
+
+# ==============================================
+# 7. vcpkg (C++ Package Manager)
+# ==============================================
+# vcpkg root directory (if cloned inside the project)
+vcpkg/
+
+# vcpkg installed packages (local manifest mode)
+vcpkg_installed/
+
+# vcpkg manifest lock file (optional, but often ignored)
+vcpkg-lock.json
+
+# vcpkg buildtrees and downloads (temporary)
+buildtrees/
+downloads/
+packages/
+
+# vcpkg triplet-specific installed directories
+# (vcpkg_installed/x64-windows/ etc. already covered by vcpkg_installed/)
+
+# ==============================================
+# 8. Bun (JavaScript Runtime & Package Manager)
+# ==============================================
+bun.lockb
+.bun/
+node_modules.bun/
+*.bun-build
+
+# ==============================================
+# 9. Phaser (HTML5 Game Framework)
+# ==============================================
+# Texture Packer output (if used for spritesheets)
+*.tps
+
+# Tiled map editor backup files
+*.tmx~
+*.tsx~
+
+# ==============================================
+# 10. Environment & Deployment
+# ==============================================
+# Docker
+Dockerfile
+docker-compose.override.yml
+.dockerignore
+
+# Vercel / Netlify
+.vercel
+.netlify
+
+# Serverless
+.serverless/
+
+# ==============================================
+# 11. Monorepo Tooling (Turborepo / Lerna / Nx)
+# ==============================================
+.turbo/
+.nx/
+lerna-debug.log

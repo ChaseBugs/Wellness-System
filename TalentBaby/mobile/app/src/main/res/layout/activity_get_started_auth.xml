@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login_design">
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="190dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Back"
+        android:padding="8dp"
+        android:src="@drawable/ic_arrow_back"
+        android:tint="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="58dp"
+        android:paddingTop="390dp"
+        android:paddingEnd="58dp"
+        android:paddingBottom="106dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/create_account_title"
+            android:textColor="@color/design_blue"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:text="@string/save_progress_subtitle"
+            android:textColor="@color/design_blue"
+            android:textSize="22sp" />
+
+        <LinearLayout
+            android:id="@+id/btnGoogle"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="92dp"
+            android:background="@drawable/bg_auth_option_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:contentDescription="Google"
+                android:src="@drawable/ic_google" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:text="@string/continue_google"
+                android:textColor="@color/design_gray"
+                android:textSize="23sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnEmail"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="64dp"
+            android:background="@drawable/bg_auth_option_button"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:contentDescription="Email"
+                android:src="@drawable/ic_email" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:text="@string/continue_email"
+                android:textColor="@color/design_gray"
+                android:textSize="23sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView style="@style/AuthStar" android:src="@drawable/ic_star_filled" />
+            <ImageView style="@style/AuthStar" android:src="@drawable/ic_star_filled" />
+            <ImageView style="@style/AuthStar" android:src="@drawable/ic_star_filled" />
+            <ImageView style="@style/AuthStar" android:src="@drawable/ic_star_filled" />
+            <ImageView style="@style/AuthStar" android:src="@drawable/ic_star_filled" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="@string/loved_by_parents"
+            android:textColor="@color/design_gray"
+            android:textSize="25sp" />
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,90 @@
+model babies {
+  id                                 Int                             @id @default(autoincrement())
+  user_id                            Int
+  name                               String                          @db.VarChar(255)
+  birth_date                         DateTime                        @db.Date
+  gender                             String?                         @db.VarChar(20)
+  birth_weight_kg                    Decimal?                        @db.Decimal(5, 2)
+  birth_height_cm                    Decimal?                        @db.Decimal(5, 2)
+  profile_picture_url                String?
+  avatar_url                         String?
+  created_at                         DateTime?                       @default(now()) @db.Timestamp(6)
+  updated_at                         DateTime?                       @default(now()) @db.Timestamp(6)
+  ai_insights                        ai_insights[]
+  appointments                       appointments[]
+  users_babies_user_idTousers        users                           @relation("babies_user_idTousers", fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  baby_activities                    baby_activities[]
+  baby_daily_activities              baby_daily_activities[]
+  baby_material_recommendations      baby_material_recommendations[]
+  baby_milestones                    baby_milestones[]
+  daily_calorie_summary              daily_calorie_summary[]
+  daily_meal_plans                   daily_meal_plans[]
+  daily_plans                        daily_plans[]
+  diaper_changes                     diaper_changes[]
+  family_members                     family_members[]
+  feedings                           feedings[]
+  food_intake_logs                   food_intake_logs[]
+  growth_records                     growth_records[]
+  growth_stories                     growth_stories[]
+  memories                           memories[]
+  milestones                         milestones[]
+  registries                         registries[]
+  reminders                          reminders[]
+  sleep_sessions                     sleep_sessions[]
+  talent_assessments                 talent_assessments[]
+  talent_missions                    talent_missions[]
+  talent_progress                    talent_progress[]
+  users_users_active_baby_idTobabies users[]                         @relation("users_active_baby_idTobabies")
+  vaccinations                       vaccinations[]
+
+  @@index([user_id], map: "idx_babies_user_id")
+}
+
+model vaccinations {
+  id                Int       @id @default(autoincrement())
+  baby_id           Int
+  vaccine_name      String    @db.VarChar(255)
+  scheduled_date    DateTime  @db.Date
+  administered_date DateTime? @db.Date
+  dose_number       Int?
+  notes             String?
+  reminder_sent     Boolean?  @default(false)
+  created_at        DateTime? @default(now()) @db.Timestamp(6)
+  updated_at        DateTime? @default(now()) @db.Timestamp(6)
+  babies            babies    @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model growth_records {
+  id                            Int       @id @default(autoincrement())
+  baby_id                       Int
+  record_date                   DateTime  @db.Date
+  age_in_days                   Int
+  weight_kg                     Decimal?  @db.Decimal(5, 2)
+  height_cm                     Decimal?  @db.Decimal(5, 2)
+  head_circumference_cm         Decimal?  @db.Decimal(5, 2)
+  bmi                           Decimal?  @db.Decimal(4, 2)
+  percentile_weight             Int?
+  percentile_height             Int?
+  percentile_head_circumference Int?
+  notes                         String?
+  created_at                    DateTime? @default(now()) @db.Timestamp(6)
+  updated_at                    DateTime? @default(now()) @db.Timestamp(6)
+  babies                        babies    @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([baby_id], map: "idx_growth_records_baby_id")
+  @@index([record_date], map: "idx_growth_records_record_date")
+}
+
+model growth_stories {
+  id                  Int       @id @default(autoincrement())
+  baby_id             Int
+  story_period        String?   @db.VarChar(50)
+  period_start_date   DateTime  @db.Date
+  period_end_date     DateTime  @db.Date
+  story_content       String?
+  highlights          String[]
+  milestones_achieved Int[]
+  photos_included     Int[]
+  generated_at        DateTime? @default(now()) @db.Timestamp(6)
+  babies              babies    @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}

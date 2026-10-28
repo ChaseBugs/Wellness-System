@@ -1,0 +1,58 @@
+model recipes {
+  id                   Int                @id @default(autoincrement())
+  title                String             @db.VarChar(255)
+  description          String?
+  age_range_min_months Int
+  age_range_max_months Int
+  recipe_type          String             @db.VarChar(50)
+  ingredients          String[]
+  instructions         String[]
+  nutrition_info       Json?
+  prep_time_minutes    Int?
+  cooking_time_minutes Int?
+  image_url            String?
+  created_at           DateTime?          @default(now()) @db.Timestamp(6)
+  updated_at           DateTime?          @default(now()) @db.Timestamp(6)
+  target               String             @default("baby") @db.VarChar(10)
+  meal_slot            String?            @db.VarChar(30)
+  baby_age_group       String?            @db.VarChar(10)
+  language             String             @default("en") @db.Char(2)
+  daily_meal_plans     daily_meal_plans[]
+  recipe_favorites     recipe_favorites[]
+
+  @@index([baby_age_group], map: "idx_recipes_age_group")
+  @@index([language], map: "idx_recipes_lang")
+  @@index([meal_slot], map: "idx_recipes_meal_slot")
+  @@index([target], map: "idx_recipes_target")
+}
+
+model recipe_favorites {
+  id         Int       @id @default(autoincrement())
+  user_id    Int
+  recipe_id  Int
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  recipes    recipes   @relation(fields: [recipe_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users      users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([user_id, recipe_id])
+  @@index([user_id], map: "idx_recipe_favorites_user_id")
+}
+
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
+model daily_meal_plans {
+  id         Int       @id @default(autoincrement())
+  user_id    Int
+  baby_id    Int?
+  plan_type  String    @default("baby") @db.VarChar(10)
+  plan_date  DateTime  @db.Date
+  meal_slot  String    @db.VarChar(30)
+  recipe_id  Int?
+  notes      String?
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  babies     babies?   @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  recipes    recipes?  @relation(fields: [recipe_id], references: [id], onUpdate: NoAction)
+  users      users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([user_id, baby_id, plan_type, plan_date, meal_slot])
+  @@index([user_id, plan_date], map: "idx_daily_plans_user_date")
+}

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base palette (light mode) -->
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- BabyG Brand Colors — LittleBloom palette -->
+    <color name="primary">#FFD96E4B</color>
+    <color name="primary_dark">#FFBA5535</color>
+    <color name="primary_light">#FFF9D0B8</color>
+    <color name="primary_container">#FFFCE4D6</color>
+    <color name="secondary">#FFE8B14A</color>
+    <color name="secondary_dark">#FFC8911A</color>
+    <color name="accent">#FFF08B6B</color>
+
+    <!-- Light Mode Surfaces -->
+    <color name="background">#FFFDF6EE</color>
+    <color name="surface">#FFFFFFFF</color>
+    <color name="surface_variant">#FFF5F8FC</color>
+    <color name="card_background">#FFFFFFFF</color>
+    <color name="card_elevated">#FFFFFFFF</color>
+
+    <!-- Light Mode Text -->
+    <color name="text_primary">#FF2B1F1A</color>
+    <color name="text_secondary">#FF9A8A80</color>
+    <color name="text_hint">#FFCDBFB5</color>
+    <color name="text_on_primary">#FFFFFFFF</color>
+
+    <!-- UI Elements -->
+    <color name="divider">#FFE0EAF4</color>
+    <color name="nav_unselected">#FF8EA0B4</color>
+    <color name="overlay_scrim">#80000000</color>
+
+    <!-- Status Colors -->
+    <color name="success">#FF34C78A</color>
+    <color name="warning">#FFFFCA28</color>
+    <color name="error">#FFEF5350</color>
+
+    <!-- Activity Category Colors -->
+    <color name="category_sensory">#FFFF9F43</color>
+    <color name="category_motor">#FFFF6B81</color>
+    <color name="category_language">#FF5DADE2</color>
+    <color name="category_cognitive">#FF8E44AD</color>
+    <color name="category_social">#FF27AE60</color>
+    <color name="category_creative">#FFE67E22</color>
+    <color name="category_default">#FFD96E4B</color>
+
+    <!-- Category Card Backgrounds — LittleBloom exact -->
+    <color name="category_sensory_bg">#FFF8A89A</color>
+    <color name="category_motor_bg">#FFF2B279</color>
+    <color name="category_language_bg">#FFA8C5D6</color>
+    <color name="category_cognitive_bg">#FFC9A9D1</color>
+    <color name="category_social_bg">#FF9CBF93</color>
+    <color name="category_creative_bg">#FF8B7BAE</color>
+
+    <!-- BabyG Home reference palette -->
+    <color name="home_sky_top">#FFC8EEF4</color>
+    <color name="home_sky_bottom">#FF58C4C5</color>
+    <color name="home_teal">#FF58B7BE</color>
+    <color name="article_header">#FF58B7BE</color>
+    <color name="app_header_start">#FFC8EEF4</color>
+    <color name="app_header_end">#FF58C4C5</color>
+    <color name="home_text_dark">#FF4F4F56</color>
+    <color name="home_text_muted">#FF7F8286</color>
+    <color name="home_card_surface">#FFF9FEFF</color>
+    <color name="home_date_selected">#FF807F7C</color>
+    <color name="design_cream">#FFFFFBF4</color>
+    <color name="design_line">#FFE2E2E2</color>
+    <color name="design_gray">#FF7C7E83</color>
+    <color name="design_blue">#FF4E72B7</color>
+    <color name="home_category_activities">#FFFFA6AF</color>
+    <color name="home_category_milestones">#FFFFA668</color>
+    <color name="home_category_weight">#FF70B4E7</color>
+    <color name="home_category_nutrition">#FFA8A8D7</color>
+    <color name="home_category_stories">#FF45CFA0</color>
+    <color name="home_category_articles">#FF6672C8</color>
+    <color name="milestone_physical">#FF45CFA0</color>
+    <color name="milestone_cognitive">#FFA8A8D7</color>
+    <color name="milestone_communication">#FFFFA668</color>
+    <color name="milestone_social">#FFFFA6AF</color>
+
+    <!-- Tracker Colors -->
+    <color name="tracker_feeding">#FFFFF3E0</color>
+    <color name="tracker_sleep">#FFE3F2FD</color>
+    <color name="tracker_diaper">#FFE8F5E9</color>
+    <color name="tracker_feeding_icon">#FFFF9F43</color>
+    <color name="tracker_sleep_icon">#FF5DADE2</color>
+    <color name="tracker_diaper_icon">#FF27AE60</color>
+
+    <!-- Date Selector — T.ink70 pill for selected -->
+    <color name="date_selected_bg">#FF5C4A42</color>
+    <color name="date_selected_text">#FFFFFFFF</color>
+    <color name="date_unselected_bg">#00FFFFFF</color>
+    <color name="date_unselected_text">#FF9A8A80</color>
+
+    <!-- Tips Card — plum -->
+    <color name="tips_card_bg">#FF6B4E71</color>
+
+    <!-- Onboarding / Auth -->
+    <color name="headline_blue">#FF1E5FA8</color>
+    <color name="headline_blue_light">#FF2E7BD6</color>
+    <color name="onboarding_bg">#FFFAFBFF</color>
+    <color name="award_gold">#FFFFC107</color>
+    <color name="goal_selected_bg">#FFFCE4D6</color>
+    <color name="goal_selected_border">#FFD96E4B</color>
+    <color name="goal_unselected_border">#FFE8DCCF</color>
+    <color name="info_block_bg">#FFFDF6EE</color>
+    <color name="auth_button_bg">#FFFFFFFF</color>
+    <color name="forgot_password">#FFD96E4B</color>
+
+    <!-- LittleBloom / Library palette -->
+    <color name="lb_cream">#FDF6EE</color>
+    <color name="lb_cream_deep">#F7EBDC</color>
+    <color name="lb_blush">#FCE4D6</color>
+    <color name="lb_peach">#F9D0B8</color>
+    <color name="lb_coral">#F08B6B</color>
+    <color name="lb_coral_deep">#D96E4B</color>
+    <color name="lb_mustard">#E8B14A</color>
+    <color name="lb_sage">#8BA888</color>
+    <color name="lb_plum">#6B4E71</color>
+    <color name="lb_sky">#A8C5D6</color>
+    <color name="lb_ink">#2B1F1A</color>
+    <color name="lb_ink70">#5C4A42</color>
+    <color name="lb_ink40">#9A8A80</color>
+    <color name="lb_line">#E8DCCF</color>
+
+    <!-- Legacy - kept for compatibility -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="baby_pink">#FFFFCDD2</color>
+    <color name="baby_blue">#FFBBDEFB</color>
+    <color name="baby_green">#FFC8E6C9</color>
+    <color name="baby_yellow">#FFFFF9C4</color>
+    <color name="baby_purple">#FFE1BEE7</color>
+    <color name="primary_dark_legacy">#FF4A7FE0</color>
+    <color name="primary_light_legacy">#FFB3D1FF</color>
+</resources>

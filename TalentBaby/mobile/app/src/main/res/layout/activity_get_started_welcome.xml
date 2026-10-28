@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/design_cream">
+
+    <LinearLayout
+        android:id="@+id/layoutAward"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="66dp"
+        android:paddingEnd="66dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="248dp">
+
+        <TextView
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:rotation="-18"
+            android:text="))))"
+            android:textColor="@color/award_gold"
+            android:textSize="34sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/award_winning"
+                android:textColor="@color/design_gray"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="@string/google_play_2022"
+                android:textColor="@color/design_gray"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="72dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:rotation="18"
+            android:text="(((("
+            android:textColor="@color/award_gold"
+            android:textSize="34sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textWelcomeHeadline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.12"
+        android:text="@string/welcome_headline"
+        android:textColor="@color/design_blue"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/layoutAward"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="104dp"
+        android:paddingStart="28dp"
+        android:paddingEnd="28dp" />
+
+    <ImageView
+        android:id="@+id/cardHeroImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="false"
+        android:contentDescription="@string/welcome_headline"
+        android:scaleType="centerCrop"
+        android:src="@drawable/onboarding_mom_baby"
+        app:layout_constraintTop_toBottomOf="@id/textWelcomeHeadline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="26dp" />
+
+    <TextView
+        android:id="@+id/btnGetStarted"
+        android:layout_width="0dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="66dp"
+        android:background="@drawable/bg_teal_button_large"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="@string/lets_get_started"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@id/textAlreadyUser"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textAlreadyUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/already_a_user"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

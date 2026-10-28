@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- Top bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        app:elevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp">
+
+            <ImageButton
+                android:id="@+id/btnMenuTracker"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_menu_hamburger"
+                android:contentDescription="Menu"
+                android:padding="6dp"
+                android:tint="@color/home_text_dark" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/daily_tracker"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:layout_marginStart="8dp" />
+
+            <TextView
+                android:id="@+id/btnParentingSupportTracker"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:text="@string/parenting_support"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_teal_button"
+                android:gravity="center"
+                android:paddingHorizontal="14dp"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+        <!-- Date selector -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:id="@+id/btnDateYesterday"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:text="@string/yesterday"
+                android:textSize="13sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="center"
+                android:background="@drawable/bg_date_unselected"
+                android:layout_marginEnd="6dp"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <TextView
+                android:id="@+id/btnDateToday"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:text="@string/today"
+                android:textSize="13sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@drawable/bg_date_selected"
+                android:layout_marginEnd="6dp"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <TextView
+                android:id="@+id/btnDateTomorrow"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:text="@string/tomorrow"
+                android:textSize="13sp"
+                android:textColor="@color/text_secondary"
+                android:gravity="center"
+                android:background="@drawable/bg_date_unselected"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="32dp">
+
+            <!-- FEEDING CARD -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/card_background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:text="🍼"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:background="@drawable/circle_background" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/feeding"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary" />
+
+                            <TextView
+                                android:id="@+id/textFeedingCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/no_records_today"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/btnLogFeeding"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:text="@string/log_entry"
+                            android:textSize="13sp"
+                            android:textColor="@color/primary"
+                            android:background="@drawable/bg_status_unselected"
+                            android:gravity="center"
+                            android:paddingHorizontal="14dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+                    </LinearLayout>
+
+                    <!-- Recent feeding entries -->
+                    <LinearLayout
+                        android:id="@+id/layoutFeedingEntries"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- SLEEP CARD -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/card_background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:text="😴"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:background="@drawable/circle_background" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sleep"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary" />
+
+                            <TextView
+                                android:id="@+id/textSleepCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/no_records_today"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/btnLogSleep"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:text="@string/log_entry"
+                            android:textSize="13sp"
+                            android:textColor="@color/primary"
+                            android:background="@drawable/bg_status_unselected"
+                            android:gravity="center"
+                            android:paddingHorizontal="14dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutSleepEntries"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- DIAPER CARD -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/card_background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:text="💧"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:background="@drawable/circle_background" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/poop_pee"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary" />
+
+                            <TextView
+                                android:id="@+id/textDiaperCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/no_records_today"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/btnLogDiaper"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:text="@string/log_entry"
+                            android:textSize="13sp"
+                            android:textColor="@color/primary"
+                            android:background="@drawable/bg_status_unselected"
+                            android:gravity="center"
+                            android:paddingHorizontal="14dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutDiaperEntries"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- GROWTH CARD -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/card_background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:text="📏"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:background="@drawable/circle_background" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/growth"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/text_primary" />
+
+                            <TextView
+                                android:id="@+id/textGrowthSummary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/no_records_today"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/btnLogGrowth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:text="@string/log_entry"
+                            android:textSize="13sp"
+                            android:textColor="@color/primary"
+                            android:background="@drawable/bg_status_unselected"
+                            android:gravity="center"
+                            android:paddingHorizontal="14dp"
+                            android:clickable="true"
+                            android:focusable="true" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutGrowthEntries"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

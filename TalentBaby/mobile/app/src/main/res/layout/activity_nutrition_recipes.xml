@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/bg_home_header">
+
+        <ImageButton
+            android:id="@+id/btnBackNutrition"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_gravity="start|top"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="38dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/cancel"
+            android:padding="10dp"
+            android:src="@drawable/ic_arrow_back"
+            android:tint="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|top"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="48dp"
+            android:text="@string/nutrition_recipes_title"
+            android:textColor="@color/home_text_dark"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <HorizontalScrollView
+            android:id="@+id/ageScrollNutrition"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="78dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/nutritionAgeSelector"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tabNutritionMonth0To6"
+                    style="@style/NutritionAgeTab"
+                    android:text="@string/nutrition_month_0_6" />
+
+                <TextView
+                    android:id="@+id/tabNutritionMonth7To11"
+                    style="@style/NutritionAgeTab"
+                    android:text="@string/nutrition_month_7_11" />
+
+                <TextView
+                    android:id="@+id/tabNutritionMonth12To17"
+                    style="@style/NutritionAgeTab"
+                    android:text="@string/nutrition_month_12_17" />
+
+                <TextView
+                    android:id="@+id/tabNutritionMonth18To24"
+                    style="@style/NutritionAgeTab"
+                    android:text="@string/nutrition_month_18_24" />
+
+                <TextView
+                    android:id="@+id/tabNutritionMonth25To30"
+                    style="@style/NutritionAgeTab"
+                    android:text="@string/nutrition_month_25_30" />
+
+                <TextView
+                    android:id="@+id/tabNutritionMonth31To36"
+                    style="@style/NutritionAgeTab"
+                    android:text="@string/nutrition_month_31_36" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <LinearLayout
+            android:id="@+id/nutritionModeRow"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="36dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_teal_outline_pill"
+                android:orientation="horizontal"
+                android:padding="1dp"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/tabLactationGuide"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/recipes_for_baby"
+                    android:textColor="@color/home_teal"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tabMomPlan"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/nutrition_and_benefits"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tabVeg"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="14dp"
+                android:background="@drawable/circle_white_solid"
+                android:clickable="true"
+                android:elevation="1dp"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/veg"
+                android:textColor="@color/home_teal"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:layout_gravity="bottom"
+            android:contentDescription=""
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_activity_header_curve" />
+
+        <FrameLayout
+            android:id="@+id/btnRefreshNutrition"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="7dp"
+            android:background="@drawable/circle_white_solid"
+            android:clickable="true"
+            android:elevation="6dp"
+            android:focusable="true"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/iconRefreshNutrition"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:contentDescription=""
+                android:src="@drawable/ic_refresh_gray"
+                android:tint="@color/black" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="30dp">
+
+        <LinearLayout
+            android:id="@+id/nutritionContentRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingTop="38dp"
+            android:paddingEnd="24dp">
+
+            <LinearLayout
+                android:id="@+id/datePlanRow"
+                android:layout_width="match_parent"
+                android:layout_height="86dp"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+            <LinearLayout
+                android:id="@+id/mealTypeRow"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tabMealBreakfast"
+                    style="@style/NutritionMealTypeTab"
+                    android:text="@string/breakfast" />
+
+                <TextView
+                    android:id="@+id/tabMealLunch"
+                    style="@style/NutritionMealTypeTab"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/lunch" />
+
+                <TextView
+                    android:id="@+id/tabMealDinner"
+                    style="@style/NutritionMealTypeTab"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/dinner" />
+
+                <TextView
+                    android:id="@+id/tabMealSnacks"
+                    style="@style/NutritionMealTypeTab"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/snacks" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/guideContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/breastfeeding_tips_title"
+                    android:textColor="@color/home_text_dark"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:lineSpacingExtra="3dp"
+                    android:text="@string/breastfeeding_tips_body"
+                    android:textColor="@color/home_text_dark"
+                    android:textSize="24sp" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="-12dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="-12dp"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="178dp"
+                            android:layout_height="220dp"
+                            android:background="@drawable/bg_nutrition_guide_card"
+                            android:gravity="start"
+                            android:paddingStart="28dp"
+                            android:paddingTop="22dp"
+                            android:paddingEnd="22dp"
+                            android:text="@string/breastfeeding_fact_1"
+                            android:textColor="@color/white"
+                            android:textSize="19sp" />
+
+                        <TextView
+                            android:layout_width="178dp"
+                            android:layout_height="220dp"
+                            android:layout_marginStart="24dp"
+                            android:background="@drawable/bg_nutrition_guide_card"
+                            android:gravity="start"
+                            android:paddingStart="28dp"
+                            android:paddingTop="22dp"
+                            android:paddingEnd="20dp"
+                            android:text="@string/breastfeeding_fact_2"
+                            android:textColor="@color/white"
+                            android:textSize="19sp" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="94dp"
+                    android:layout_marginTop="34dp"
+                    android:background="@drawable/bg_nutrition_meal_card"
+                    android:drawableEnd="@drawable/ic_chevron_down_gray"
+                    android:gravity="center_vertical"
+                    android:paddingStart="22dp"
+                    android:paddingEnd="20dp"
+                    android:text="@string/cereals"
+                    android:textColor="@color/home_text_dark"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="94dp"
+                    android:layout_marginTop="22dp"
+                    android:background="@drawable/bg_nutrition_meal_card"
+                    android:drawableEnd="@drawable/ic_chevron_down_gray"
+                    android:gravity="center_vertical"
+                    android:paddingStart="22dp"
+                    android:paddingEnd="20dp"
+                    android:text="@string/milk_products"
+                    android:textColor="@color/home_text_dark"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerNutritionMeals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="54dp"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerBabyRecipes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="62dp"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerBenefitSections"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                android:visibility="gone" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

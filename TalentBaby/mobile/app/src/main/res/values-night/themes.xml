@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TalentBaby" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:windowAnimationStyle">@style/Animation.TalentBaby.None</item>
+        <item name="android:forceDarkAllowed">false</item>
+        <!-- Dark mode: dark status bar -->
+        <item name="android:statusBarColor">@color/article_header</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="elevationOverlayEnabled">true</item>
+    </style>
+
+    <style name="Theme.TalentBaby.Splash" parent="Theme.TalentBaby">
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:statusBarColor">@color/article_header</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

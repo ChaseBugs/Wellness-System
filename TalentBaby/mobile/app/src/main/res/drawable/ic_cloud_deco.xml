@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Design: AppTopBar decorative cloud — M10 40 Q20 20 40 28 Q50 15 70 22 Q90 10 110 30 L110 50 L10 50 Z, white fill -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="50dp"
+    android:viewportWidth="120"
+    android:viewportHeight="50">
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M10,40 Q20,20 40,28 Q50,15 70,22 Q90,10 110,30 L110,50 L10,50 Z" />
+</vector>

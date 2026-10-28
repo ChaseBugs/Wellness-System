@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- App bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarTips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        app:elevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/btnMenuTips"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_menu_hamburger"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Menu"
+                android:padding="6dp"
+                android:tint="@color/home_text_dark" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/nav_tips"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:layout_marginStart="8dp" />
+
+            <TextView
+                android:id="@+id/btnParentingSupportTips"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:text="@string/parenting_support"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_teal_button"
+                android:gravity="center"
+                android:paddingHorizontal="14dp"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+        <!-- Content type filter tabs -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="12dp">
+
+            <LinearLayout
+                android:id="@+id/layoutTypeTabs"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tabAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="@string/all_categories"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:background="@drawable/bg_tab_selected"
+                    android:textColor="@color/text_on_primary" />
+
+                <TextView
+                    android:id="@+id/tabTip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="@string/tips_tab_tip"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:background="@drawable/bg_tab_unselected"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginStart="8dp" />
+
+                <TextView
+                    android:id="@+id/tabDevelopment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="@string/tips_tab_development"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:background="@drawable/bg_tab_unselected"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginStart="8dp" />
+
+                <TextView
+                    android:id="@+id/tabSafety"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="@string/tips_tab_safety"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:background="@drawable/bg_tab_unselected"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Loading -->
+            <ProgressBar
+                android:id="@+id/progressBarTips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone" />
+
+            <!-- Tips list -->
+            <LinearLayout
+                android:id="@+id/layoutTipsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <!-- Empty state -->
+            <LinearLayout
+                android:id="@+id/layoutEmptyTips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="64dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="💡"
+                    android:textSize="48sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_tips_today"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

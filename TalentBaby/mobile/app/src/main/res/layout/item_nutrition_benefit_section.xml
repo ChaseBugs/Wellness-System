@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="24dp"
+    android:background="@drawable/bg_nutrition_meal_card"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:paddingStart="18dp"
+    android:paddingTop="18dp"
+    android:paddingEnd="18dp"
+    android:paddingBottom="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textBenefitTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/home_text_dark"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/iconBenefitChevron"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription=""
+            android:src="@drawable/ic_chevron_down_gray" />
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="22dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/rowBenefitFoods"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:id="@+id/contentBenefitText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/design_gray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/benefits"
+            android:textColor="@color/home_text_dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textBenefitBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:lineSpacingExtra="2dp"
+            android:textColor="@color/home_text_dark"
+            android:textSize="17sp" />
+    </LinearLayout>
+</LinearLayout>

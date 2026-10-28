@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="172dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/bg_home_header"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="32dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageButton
+                    android:id="@+id/btnMenuRecipes"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Menu"
+                    android:padding="6dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_menu_hamburger"
+                    android:tint="@color/home_text_dark" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/library_nutrition"
+                android:textSize="27sp"
+                android:textStyle="bold"
+                android:textColor="@color/home_text_dark" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="8dp"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:selectionRequired="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all_categories"
+                android:checked="true"
+                android:textColor="@color/article_header"
+                app:chipStrokeColor="@color/article_header"
+                app:chipStrokeWidth="1dp"
+                app:chipBackgroundColor="@color/white"
+                style="@style/Widget.MaterialComponents.Chip.Choice" />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerRecipes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="24dp"
+            android:clipToPadding="false" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/article_header"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/layoutEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_recipes"
+                android:textSize="16sp"
+                android:textColor="@color/home_text_muted" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

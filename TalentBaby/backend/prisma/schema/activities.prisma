@@ -1,0 +1,113 @@
+model activities {
+  id                    Int                     @id @default(autoincrement())
+  title                 String                  @db.VarChar(255)
+  description           String?
+  category              String?                 @db.VarChar(50)
+  age_range_min_months  Int?
+  age_range_max_months  Int?
+  duration_minutes      Int?
+  difficulty_level      String?                 @db.VarChar(20)
+  materials_needed      String[]
+  instructions          String?
+  learning_outcomes     String[]
+  image_url             String?
+  created_at            DateTime?               @default(now()) @db.Timestamp(6)
+  updated_at            DateTime?               @default(now()) @db.Timestamp(6)
+  video_url             String?
+  video_thumbnail_url   String?
+  sub_category          String?                 @db.VarChar(100)
+  benefits              String[]
+  frequency             String?
+  month_min             Int?                    @default(1)
+  month_max             Int?                    @default(36)
+  done_count            Int?                    @default(0)
+  is_premium            Boolean?                @default(false)
+  language              String                  @default("en") @db.Char(2)
+  doctor_verified       Boolean                 @default(false)
+  baby_activities       baby_activities[]
+  baby_daily_activities baby_daily_activities[]
+
+  @@unique([title, sub_category], map: "idx_activities_title_subcategory")
+  @@index([age_range_min_months, age_range_max_months], map: "idx_activities_age_range")
+  @@index([language], map: "idx_activities_lang")
+  @@index([month_min, month_max], map: "idx_activities_month")
+}
+
+model baby_activities {
+  id                  Int               @id @default(autoincrement())
+  baby_id             Int
+  activity_id         Int
+  assigned_date       DateTime          @db.Date
+  completed_date      DateTime?         @db.Date
+  completion_notes    String?
+  rating              Int?
+  created_at          DateTime?         @default(now()) @db.Timestamp(6)
+  updated_at          DateTime?         @default(now()) @db.Timestamp(6)
+  difficulty_feedback String?           @db.VarChar(20)
+  milestone_saved     Boolean?          @default(false)
+  activity_videos     activity_videos[]
+  activities          activities        @relation(fields: [activity_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  babies              babies            @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([baby_id], map: "idx_baby_activities_baby_id")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model baby_daily_activities {
+  id           Int        @id @default(autoincrement())
+  baby_id      Int
+  plan_date    DateTime   @db.Date
+  activity_id  Int
+  slot         Int        @db.SmallInt
+  is_completed Boolean    @default(false)
+  completed_at DateTime?  @db.Timestamp(6)
+  created_at   DateTime   @default(now()) @db.Timestamp(6)
+  activities   activities @relation(fields: [activity_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  babies       babies     @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([baby_id, plan_date, slot])
+  @@index([baby_id, plan_date], map: "idx_bda_baby_date")
+}
+
+model activity_videos {
+  id               Int             @id @default(autoincrement())
+  baby_activity_id Int
+  memory_id        Int
+  created_at       DateTime?       @default(now()) @db.Timestamp(6)
+  baby_activities  baby_activities @relation(fields: [baby_activity_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  memories         memories        @relation(fields: [memory_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([baby_activity_id, memory_id])
+}
+
+model materials {
+  id                            Int                             @id @default(autoincrement())
+  title                         String                          @db.VarChar(255)
+  type                          String                          @db.VarChar(50)
+  description                   String?
+  category                      String?                         @db.VarChar(50)
+  age_range_min_months          Int?
+  age_range_max_months          Int?
+  talent_categories             Int[]
+  image_url                     String?
+  external_url                  String?
+  created_at                    DateTime?                       @default(now()) @db.Timestamp(6)
+  updated_at                    DateTime?                       @default(now()) @db.Timestamp(6)
+  language                      String                          @default("en") @db.Char(2)
+  baby_material_recommendations baby_material_recommendations[]
+  registry_items                registry_items[]
+
+  @@index([language], map: "idx_materials_lang")
+}
+
+model baby_material_recommendations {
+  id               Int       @id @default(autoincrement())
+  baby_id          Int
+  material_id      Int
+  recommended_date DateTime  @db.Date
+  reason           String?
+  viewed           Boolean?  @default(false)
+  created_at       DateTime? @default(now()) @db.Timestamp(6)
+  babies           babies    @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  materials        materials @relation(fields: [material_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Mode Surfaces -->
+    <color name="background">#FF0D1B2A</color>
+    <color name="surface">#FF1A2E4A</color>
+    <color name="surface_variant">#FF1F3757</color>
+    <color name="card_background">#FF1A2E4A</color>
+    <color name="card_elevated">#FF1F3757</color>
+
+    <!-- Dark Mode Text -->
+    <color name="text_primary">#FFE8F0F8</color>
+    <color name="text_secondary">#FF8EA0B4</color>
+    <color name="text_hint">#FF4A6080</color>
+    <color name="text_on_primary">#FFFFFFFF</color>
+
+    <!-- Dark Mode UI Elements -->
+    <color name="divider">#FF1F3757</color>
+    <color name="nav_unselected">#FF6A82A0</color>
+
+    <!-- Primary stays the same in dark mode -->
+    <color name="primary">#FF18C6A4</color>
+    <color name="primary_dark">#FF0FA88B</color>
+    <color name="primary_light">#FF0D4038</color>
+    <color name="primary_container">#FF0D3530</color>
+    <color name="article_header">#FF18C6A4</color>
+    <color name="app_header_start">#FF18C6A4</color>
+    <color name="app_header_end">#FF18C6A4</color>
+
+    <!-- Date Selector (dark) -->
+    <color name="date_selected_bg">#FF18C6A4</color>
+    <color name="date_selected_text">#FFFFFFFF</color>
+    <color name="date_unselected_bg">#FF1A2E4A</color>
+    <color name="date_unselected_text">#FFE8F0F8</color>
+
+    <!-- Tracker Colors (dark) -->
+    <color name="tracker_feeding">#FF2A1F0A</color>
+    <color name="tracker_sleep">#FF0A1F2A</color>
+    <color name="tracker_diaper">#FF0A2A15</color>
+</resources>

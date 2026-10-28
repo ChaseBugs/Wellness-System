@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/group_main" android:checkableBehavior="none">
+        <item android:id="@+id/menu_upgrade" android:title="@string/sidebar_upgrade" android:icon="@android:drawable/star_on" />
+        <item android:id="@+id/menu_add_baby" android:title="@string/sidebar_add_baby" android:icon="@android:drawable/ic_menu_add" />
+        <item android:id="@+id/menu_add_partner" android:title="@string/sidebar_add_partner" android:icon="@android:drawable/ic_menu_add" />
+        <item android:id="@+id/menu_invite" android:title="@string/sidebar_invite" android:icon="@android:drawable/ic_menu_share" />
+        <item android:id="@+id/menu_parenting_support" android:title="@string/sidebar_parenting_support" android:icon="@android:drawable/ic_menu_help" />
+        <item android:id="@+id/menu_rate_us" android:title="@string/sidebar_rate_us" android:icon="@android:drawable/btn_star_big_on" />
+    </group>
+
+    <group android:id="@+id/group_more" android:checkableBehavior="none">
+        <item android:id="@+id/menu_corporate" android:title="@string/sidebar_corporate" android:icon="@android:drawable/ic_menu_manage" />
+        <item android:id="@+id/menu_terms" android:title="@string/sidebar_terms" android:icon="@android:drawable/ic_menu_info_details" />
+        <item android:id="@+id/menu_privacy" android:title="@string/sidebar_privacy" android:icon="@android:drawable/ic_lock_idle_lock" />
+    </group>
+
+    <group android:id="@+id/group_danger" android:checkableBehavior="none">
+        <item android:id="@+id/menu_delete_account" android:title="@string/sidebar_delete_account" />
+        <item android:id="@+id/menu_logout" android:title="@string/logout" />
+    </group>
+
+</menu>

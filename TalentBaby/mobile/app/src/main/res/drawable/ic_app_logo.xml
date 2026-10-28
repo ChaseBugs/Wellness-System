@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Talent Baby logo: circular badge with a stylized baby/plant icon -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Outer circle background -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M60,60m-56,0a56,56 0,1 1,112 0a56,56 0,1 1,-112 0" />
+
+    <!-- Circle border (teal) -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#18C6A4"
+        android:strokeWidth="3"
+        android:pathData="M60,60m-54,0a54,54 0,1 1,108 0a54,54 0,1 1,-108 0" />
+
+    <!-- Tree trunk -->
+    <path
+        android:fillColor="#1A2E4A"
+        android:pathData="M57,72 L63,72 L65,92 L55,92 Z" />
+
+    <!-- Tree canopy (teal) -->
+    <path
+        android:fillColor="#18C6A4"
+        android:pathData="M60,28 C48,38 38,48 40,60 C42,68 52,72 60,72 C68,72 78,68 80,60 C82,48 72,38 60,28 Z" />
+
+    <!-- Left leaf accent (orange) -->
+    <path
+        android:fillColor="#FFA726"
+        android:pathData="M44,50 C36,44 34,34 40,30 C44,38 48,46 44,50 Z" />
+
+    <!-- Right leaf accent (yellow) -->
+    <path
+        android:fillColor="#FFD54F"
+        android:pathData="M76,50 C84,44 86,34 80,30 C76,38 72,46 76,50 Z" />
+
+    <!-- Ground -->
+    <path
+        android:fillColor="#E8F5E9"
+        android:pathData="M40,92 L80,92 L82,96 L38,96 Z" />
+</vector>

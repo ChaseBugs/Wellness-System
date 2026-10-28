@@ -1,0 +1,135 @@
+model pregnancies {
+  id                 Int                  @id @default(autoincrement())
+  user_id            Int
+  due_date           DateTime             @db.Date
+  lmp_date           DateTime?            @db.Date
+  conception_date    DateTime?            @db.Date
+  ultrasound_date    DateTime?            @db.Date
+  current_week       Int?
+  current_day        Int?
+  notes              String?
+  created_at         DateTime?            @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?            @default(now()) @db.Timestamp(6)
+  appointments       appointments[]
+  birth_plans        birth_plans[]
+  bump_photos        bump_photos[]
+  contractions       contractions[]
+  kick_sessions      kick_sessions[]
+  users              users                @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  pregnancy_symptoms pregnancy_symptoms[]
+
+  @@index([user_id], map: "idx_pregnancies_user_id")
+}
+
+model pregnancy_weeks {
+  id                Int       @id @default(autoincrement())
+  week_number       Int       @unique
+  title             String    @db.VarChar(255)
+  fetal_development String?
+  baby_size         String?   @db.VarChar(100)
+  baby_weight       String?   @db.VarChar(100)
+  body_changes      String?
+  symptoms          String[]
+  tips              String[]
+  image_url         String?
+  created_at        DateTime? @default(now()) @db.Timestamp(6)
+  updated_at        DateTime? @default(now()) @db.Timestamp(6)
+}
+
+model pregnancy_symptoms {
+  id           Int         @id @default(autoincrement())
+  pregnancy_id Int
+  symptom_date DateTime    @db.Date
+  symptom_type String      @db.VarChar(50)
+  severity     Int?
+  notes        String?
+  created_at   DateTime?   @default(now()) @db.Timestamp(6)
+  pregnancies  pregnancies @relation(fields: [pregnancy_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model pregnancy_workouts {
+  id               Int       @id @default(autoincrement())
+  title            String    @db.VarChar(255)
+  description      String?
+  trimester        Int
+  duration_minutes Int?
+  difficulty_level String?   @db.VarChar(20)
+  video_url        String?
+  thumbnail_url    String?
+  instructions     String?
+  benefits         String[]
+  precautions      String[]
+  created_at       DateTime? @default(now()) @db.Timestamp(6)
+  updated_at       DateTime? @default(now()) @db.Timestamp(6)
+}
+
+model bump_photos {
+  id            Int         @id @default(autoincrement())
+  pregnancy_id  Int
+  photo_url     String
+  thumbnail_url String?
+  week_number   Int
+  photo_date    DateTime    @db.Date
+  notes         String?
+  created_at    DateTime?   @default(now()) @db.Timestamp(6)
+  updated_at    DateTime?   @default(now()) @db.Timestamp(6)
+  pregnancies   pregnancies @relation(fields: [pregnancy_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([pregnancy_id], map: "idx_bump_photos_pregnancy_id")
+}
+
+model kick_sessions {
+  id               Int         @id @default(autoincrement())
+  pregnancy_id     Int
+  session_date     DateTime    @db.Timestamp(6)
+  start_time       DateTime    @db.Timestamp(6)
+  end_time         DateTime?   @db.Timestamp(6)
+  kick_count       Int?        @default(0)
+  duration_minutes Int?
+  notes            String?
+  created_at       DateTime?   @default(now()) @db.Timestamp(6)
+  pregnancies      pregnancies @relation(fields: [pregnancy_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model contractions {
+  id               Int         @id @default(autoincrement())
+  pregnancy_id     Int
+  contraction_time DateTime    @db.Timestamp(6)
+  duration_seconds Int?
+  intensity        Int?
+  notes            String?
+  created_at       DateTime?   @default(now()) @db.Timestamp(6)
+  pregnancies      pregnancies @relation(fields: [pregnancy_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model birth_plans {
+  id           Int          @id @default(autoincrement())
+  user_id      Int
+  pregnancy_id Int?
+  plan_content String?
+  created_at   DateTime?    @default(now()) @db.Timestamp(6)
+  updated_at   DateTime?    @default(now()) @db.Timestamp(6)
+  pregnancies  pregnancies? @relation(fields: [pregnancy_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users        users        @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model appointments {
+  id               Int          @id @default(autoincrement())
+  user_id          Int?
+  baby_id          Int?
+  pregnancy_id     Int?
+  appointment_type String?      @db.VarChar(50)
+  title            String       @db.VarChar(255)
+  description      String?
+  appointment_date DateTime     @db.Timestamp(6)
+  location         String?      @db.VarChar(255)
+  reminder_sent    Boolean?     @default(false)
+  created_at       DateTime?    @default(now()) @db.Timestamp(6)
+  updated_at       DateTime?    @default(now()) @db.Timestamp(6)
+  babies           babies?      @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  pregnancies      pregnancies? @relation(fields: [pregnancy_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users            users?       @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([appointment_date], map: "idx_appointments_appointment_date")
+  @@index([user_id], map: "idx_appointments_user_id")
+}

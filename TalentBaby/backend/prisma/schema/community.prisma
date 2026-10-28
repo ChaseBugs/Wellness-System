@@ -1,0 +1,77 @@
+model birth_clubs {
+  id                     Int                      @id @default(autoincrement())
+  birth_month            Int
+  birth_year             Int
+  club_name              String?                  @db.VarChar(255)
+  member_count           Int?                     @default(0)
+  created_at             DateTime?                @default(now()) @db.Timestamp(6)
+  birth_club_memberships birth_club_memberships[]
+  community_posts        community_posts[]
+}
+
+model birth_club_memberships {
+  id            Int         @id @default(autoincrement())
+  user_id       Int
+  birth_club_id Int
+  joined_at     DateTime?   @default(now()) @db.Timestamp(6)
+  birth_clubs   birth_clubs @relation(fields: [birth_club_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users         users       @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([user_id, birth_club_id])
+}
+
+model community_posts {
+  id            Int             @id @default(autoincrement())
+  user_id       Int
+  birth_club_id Int?
+  post_type     String?         @default("discussion") @db.VarChar(50)
+  title         String          @db.VarChar(255)
+  content       String
+  image_url     String?
+  like_count    Int?            @default(0)
+  comment_count Int?            @default(0)
+  is_pinned     Boolean?        @default(false)
+  created_at    DateTime?       @default(now()) @db.Timestamp(6)
+  updated_at    DateTime?       @default(now()) @db.Timestamp(6)
+  birth_clubs   birth_clubs?    @relation(fields: [birth_club_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users         users           @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  post_comments post_comments[]
+  post_likes    post_likes[]
+
+  @@index([birth_club_id], map: "idx_community_posts_birth_club_id")
+  @@index([created_at], map: "idx_community_posts_created_at")
+}
+
+model post_comments {
+  id              Int             @id @default(autoincrement())
+  post_id         Int
+  user_id         Int
+  content         String
+  like_count      Int?            @default(0)
+  created_at      DateTime?       @default(now()) @db.Timestamp(6)
+  updated_at      DateTime?       @default(now()) @db.Timestamp(6)
+  community_posts community_posts @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users           users           @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model post_likes {
+  id              Int             @id @default(autoincrement())
+  post_id         Int
+  user_id         Int
+  created_at      DateTime?       @default(now()) @db.Timestamp(6)
+  community_posts community_posts @relation(fields: [post_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users           users           @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([post_id, user_id])
+}
+
+model messages {
+  id                                Int       @id @default(autoincrement())
+  sender_id                         Int
+  receiver_id                       Int
+  content                           String
+  is_read                           Boolean?  @default(false)
+  created_at                        DateTime? @default(now()) @db.Timestamp(6)
+  users_messages_receiver_idTousers users     @relation("messages_receiver_idTousers", fields: [receiver_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users_messages_sender_idTousers   users     @relation("messages_sender_idTousers", fields: [sender_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}

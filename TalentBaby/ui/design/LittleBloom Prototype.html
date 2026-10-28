@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LittleBloom — Baby Development Prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #F5EADA; font-family: 'Inter', system-ui, sans-serif; }
+  * { box-sizing: border-box; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideIn { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+  .stage {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 40px 20px; gap: 30px; flex-wrap: wrap;
+  }
+  .label {
+    font-family: 'Nunito', system-ui; font-size: 12px; font-weight: 700;
+    color: #5C4A42; text-align: center; margin-top: 14px; letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .screen-picker {
+    position: fixed; top: 12px; left: 12px; background: #fff; border-radius: 14px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.15); padding: 10px; z-index: 500;
+    display: flex; gap: 6px; flex-wrap: wrap; max-width: 440px;
+    font-family: 'Inter', sans-serif;
+  }
+  .screen-picker button {
+    padding: 6px 12px; border-radius: 100px; border: 1px solid #E8DCCF;
+    background: #fff; font-size: 12px; cursor: pointer; font-family: inherit;
+    color: #5C4A42;
+  }
+  .screen-picker button.active {
+    background: #F08B6B; color: #fff; border-color: #F08B6B;
+  }
+  .screen-picker .title { font-size: 11px; font-weight: 700; color: #2B1F1A; width: 100%; margin-bottom: 2px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="components/design-system.jsx"></script>
+<script type="text/babel" src="components/frame.jsx"></script>
+<script type="text/babel" src="components/onboarding.jsx"></script>
+<script type="text/babel" src="components/home.jsx"></script>
+<script type="text/babel" src="components/screens.jsx"></script>
+
+<script type="text/babel">
+const TWEAKS = /*EDITMODE-BEGIN*/{
+  "accentHue": "coral"
+}/*EDITMODE-END*/;
+
+const SCREENS = [
+  { id: 'splash', label: 'Splash', group: 'Onboarding' },
+  { id: 'welcome', label: 'Welcome', group: 'Onboarding' },
+  { id: 'science', label: 'Science', group: 'Onboarding' },
+  { id: 'goals', label: 'Goals', group: 'Onboarding' },
+  { id: 'account', label: 'Account', group: 'Onboarding' },
+  { id: 'profile', label: 'Baby Profile', group: 'Onboarding' },
+  { id: 'trial', label: 'Free Trial', group: 'Onboarding' },
+  { id: 'home', label: 'Home', group: 'Main' },
+  { id: 'activities', label: 'Activities', group: 'Main' },
+  { id: 'milestones', label: 'Milestones', group: 'Main' },
+  { id: 'library', label: 'Library', group: 'Main' },
+  { id: 'detail', label: 'Activity Detail', group: 'Main' },
+  { id: 'growth', label: 'Growth Tracker', group: 'Main' },
+];
+
+function App() {
+  const [screen, setScreen] = React.useState(() => localStorage.getItem('bloom-screen') || 'splash');
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
+  const [activeTab, setActiveTab] = React.useState('home');
+  const [selectedActivity, setSelectedActivity] = React.useState(null);
+
+  React.useEffect(() => { localStorage.setItem('bloom-screen', screen); }, [screen]);
+
+  const go = (id) => {
+    setScreen(id);
+    setSidebarOpen(false);
+    if (['home','activities','milestones','library'].includes(id)) setActiveTab(id);
+  };
+
+  const body = (() => {
+    switch (screen) {
+      case 'splash':
+        return <SplashScreen onContinue={() => go('welcome')}/>;
+      case 'welcome':
+        return <WelcomeScreen onStart={() => go('science')} onLogin={() => go('account')}/>;
+      case 'science':
+        return <SciencePitch onBack={() => go('welcome')} onContinue={() => go('goals')}/>;
+      case 'goals':
+        return <GoalsScreen onBack={() => go('science')} onContinue={() => go('account')}/>;
+      case 'account':
+        return <AccountScreen onBack={() => go('goals')} onEmail={() => go('profile')} onGoogle={() => go('profile')}/>;
+      case 'profile':
+        return <BabyProfileScreen onBack={() => go('account')} onContinue={() => go('trial')}/>;
+      case 'trial':
+        return <TrialScreen onStart={() => go('home')} onClose={() => go('home')}/>;
+      case 'home':
+        return <>
+          <HomeScreen
+            onMenu={() => setSidebarOpen(true)}
+            onActivity={(a) => { setSelectedActivity(a); go('detail'); }}
+            onGrowth={() => go('growth')}
+            onTab={go}
+            onGift={() => go('trial')}
+          />
+          <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} onGrowth={() => go('growth')}/>
+        </>;
+      case 'activities':
+        return <>
+          <ActivitiesTab
+            onMenu={() => setSidebarOpen(true)}
+            onActivity={(a) => { setSelectedActivity(a); go('detail'); }}
+            onTab={go}
+          />
+          <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} onGrowth={() => go('growth')}/>
+        </>;
+      case 'milestones':
+        return <>
+          <MilestonesTab onMenu={() => setSidebarOpen(true)} onTab={go}/>
+          <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} onGrowth={() => go('growth')}/>
+        </>;
+      case 'library':
+        return <>
+          <LibraryTab onMenu={() => setSidebarOpen(true)} onTab={go} onGrowth={() => go('growth')}/>
+          <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} onGrowth={() => go('growth')}/>
+        </>;
+      case 'detail':
+        return <ActivityDetail onBack={() => go(activeTab === 'activities' ? 'activities' : 'home')} activity={selectedActivity}/>;
+      case 'growth':
+        return <GrowthTracker onBack={() => go('home')}/>;
+      default:
+        return <SplashScreen onContinue={() => go('welcome')}/>;
+    }
+  })();
+
+  const statusDark = screen === 'splash';
+  const bg = screen === 'splash' ? '#F08B6B' : T.cream;
+
+  return (
+    <div className="stage">
+      <div className="screen-picker">
+        <div className="title">LittleBloom — Prototype screens</div>
+        {SCREENS.map(s => (
+          <button key={s.id}
+            className={screen === s.id ? 'active' : ''}
+            onClick={() => go(s.id)}>
+            {s.label}
+          </button>
+        ))}
+      </div>
+      <div data-screen-label={screen}>
+        <Phone statusDark={statusDark} bgColor={bg}>{body}</Phone>
+        <div className="label">{SCREENS.find(s => s.id === screen)?.label || screen}</div>
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App/>);
+</script>
+</body>
+</html>

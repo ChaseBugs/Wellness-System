@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TalentBaby" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Surfaces -->
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:windowAnimationStyle">@style/Animation.TalentBaby.None</item>
+        <item name="android:forceDarkAllowed">false</item>
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/app_header_start</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <!-- Elevation overlays in dark mode -->
+        <item name="elevationOverlayEnabled">true</item>
+        <!-- Typography -->
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <!-- Splash theme - no flickering -->
+    <style name="Theme.TalentBaby.Splash" parent="Theme.TalentBaby">
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:statusBarColor">@color/app_header_start</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Animation.TalentBaby.None" parent="@android:style/Animation">
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:taskOpenEnterAnimation">@null</item>
+        <item name="android:taskOpenExitAnimation">@null</item>
+        <item name="android:taskCloseEnterAnimation">@null</item>
+        <item name="android:taskCloseExitAnimation">@null</item>
+        <item name="android:taskToFrontEnterAnimation">@null</item>
+        <item name="android:taskToFrontExitAnimation">@null</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@null</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.TalentBaby.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="NutritionAgeTab">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:layout_marginEnd">12dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/home_text_muted</item>
+        <item name="android:textSize">21sp</item>
+    </style>
+
+    <style name="NutritionMealTypeTab">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/bg_teal_outline_pill</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/home_teal</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+</resources>

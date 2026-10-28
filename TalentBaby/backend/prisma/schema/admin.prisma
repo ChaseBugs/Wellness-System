@@ -1,0 +1,62 @@
+model admin_messages {
+  id           Int       @id @default(autoincrement())
+  title        String    @db.VarChar(255)
+  body         String
+  type         String    @default("announcement") @db.VarChar(50)
+  priority     String    @default("normal") @db.VarChar(20)
+  target_role  String    @default("all") @db.VarChar(20)
+  is_published Boolean   @default(false)
+  published_at DateTime? @db.Timestamp(6)
+  created_at   DateTime  @default(now()) @db.Timestamp(6)
+  updated_at   DateTime  @default(now()) @db.Timestamp(6)
+
+  @@index([is_published, published_at(sort: Desc)], map: "idx_admin_messages_published")
+  @@index([target_role], map: "idx_admin_messages_target_role")
+}
+
+model content_topics {
+  id                         Int                          @id @default(autoincrement())
+  name                       String                       @unique @db.VarChar(100)
+  description                String?
+  icon_url                   String?
+  slug                       String?                      @unique @db.VarChar(100)
+  created_at                 DateTime?                    @default(now()) @db.Timestamp(6)
+  updated_at                 DateTime?                    @default(now()) @db.Timestamp(6)
+  content_topic_associations content_topic_associations[]
+}
+
+model content_topic_associations {
+  id             Int            @id @default(autoincrement())
+  topic_id       Int
+  content_type   String         @db.VarChar(50)
+  content_id     Int
+  created_at     DateTime?      @default(now()) @db.Timestamp(6)
+  content_topics content_topics @relation(fields: [topic_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([topic_id, content_type, content_id])
+  @@index([content_type, content_id], map: "idx_content_topic_assoc_content")
+  @@index([topic_id], map: "idx_content_topic_assoc_topic")
+}
+
+model user_action_logs {
+  id                 Int       @id @default(autoincrement())
+  user_id            Int?
+  action_type        String    @db.VarChar(100)
+  action_description String?
+  resource_type      String?   @db.VarChar(50)
+  resource_id        Int?
+  ip_address         String?   @db.VarChar(45)
+  user_agent         String?
+  request_method     String?   @db.VarChar(10)
+  request_path       String?   @db.VarChar(255)
+  status_code        Int?
+  error_message      String?
+  metadata           Json?
+  created_at         DateTime? @default(now()) @db.Timestamp(6)
+  users              users?    @relation(fields: [user_id], references: [id], onUpdate: NoAction)
+
+  @@index([action_type], map: "idx_user_action_logs_action_type")
+  @@index([created_at], map: "idx_user_action_logs_created_at")
+  @@index([resource_type, resource_id], map: "idx_user_action_logs_resource")
+  @@index([user_id], map: "idx_user_action_logs_user_id")
+}

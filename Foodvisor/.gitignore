@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.next/
+.next-dev/
+.env
+.DS_Store
+*.log
+mobile/.gradle/
+mobile/**/build/
+mobile/local.properties

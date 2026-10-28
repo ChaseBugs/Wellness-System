@@ -1,0 +1,147 @@
+model registries {
+  id             Int              @id @default(autoincrement())
+  user_id        Int
+  baby_id        Int?
+  registry_name  String           @db.VarChar(255)
+  is_public      Boolean?         @default(false)
+  share_code     String?          @unique @db.VarChar(50)
+  created_at     DateTime?        @default(now()) @db.Timestamp(6)
+  updated_at     DateTime?        @default(now()) @db.Timestamp(6)
+  babies         babies?          @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users          users            @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  registry_items registry_items[]
+}
+
+model registry_items {
+  id                      Int        @id @default(autoincrement())
+  registry_id             Int
+  material_id             Int?
+  custom_item_name        String?    @db.VarChar(255)
+  custom_item_description String?
+  quantity                Int?       @default(1)
+  purchased               Boolean?   @default(false)
+  purchased_by            String?    @db.VarChar(255)
+  created_at              DateTime?  @default(now()) @db.Timestamp(6)
+  updated_at              DateTime?  @default(now()) @db.Timestamp(6)
+  materials               materials? @relation(fields: [material_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  registries              registries @relation(fields: [registry_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model expert_classes {
+  id                Int                 @id @default(autoincrement())
+  title             String              @db.VarChar(255)
+  description       String?
+  instructor_name   String?             @db.VarChar(255)
+  class_type        String              @db.VarChar(50)
+  scheduled_time    DateTime?           @db.Timestamp(6)
+  video_url         String?
+  thumbnail_url     String?
+  duration_minutes  Int?
+  category          String?             @db.VarChar(50)
+  is_premium        Boolean?            @default(false)
+  created_at        DateTime?           @default(now()) @db.Timestamp(6)
+  updated_at        DateTime?           @default(now()) @db.Timestamp(6)
+  language          String              @default("en") @db.Char(2)
+  class_enrollments class_enrollments[]
+
+  @@index([language], map: "idx_expert_classes_lang")
+}
+
+model class_enrollments {
+  id             Int            @id @default(autoincrement())
+  user_id        Int
+  class_id       Int
+  enrolled_at    DateTime?      @default(now()) @db.Timestamp(6)
+  completed_at   DateTime?      @db.Timestamp(6)
+  expert_classes expert_classes @relation(fields: [class_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users          users          @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([user_id, class_id])
+}
+
+model subscriptions {
+  id               Int       @id @default(autoincrement())
+  user_id          Int
+  plan_type        String    @db.VarChar(50)
+  status           String?   @default("active") @db.VarChar(50)
+  start_date       DateTime  @db.Date
+  end_date         DateTime? @db.Date
+  payment_provider String?   @db.VarChar(50)
+  payment_id       String?   @db.VarChar(255)
+  created_at       DateTime? @default(now()) @db.Timestamp(6)
+  updated_at       DateTime? @default(now()) @db.Timestamp(6)
+  users            users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model checklists {
+  id              Int               @id @default(autoincrement())
+  user_id         Int
+  checklist_type  String            @db.VarChar(50)
+  title           String            @db.VarChar(255)
+  description     String?
+  created_at      DateTime?         @default(now()) @db.Timestamp(6)
+  updated_at      DateTime?         @default(now()) @db.Timestamp(6)
+  checklist_items checklist_items[]
+  users           users             @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model checklist_items {
+  id           Int        @id @default(autoincrement())
+  checklist_id Int
+  item_text    String     @db.VarChar(255)
+  is_checked   Boolean?   @default(false)
+  item_order   Int?
+  created_at   DateTime?  @default(now()) @db.Timestamp(6)
+  updated_at   DateTime?  @default(now()) @db.Timestamp(6)
+  checklists   checklists @relation(fields: [checklist_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model reminders {
+  id                 Int       @id @default(autoincrement())
+  user_id            Int
+  baby_id            Int?
+  reminder_type      String    @db.VarChar(50)
+  title              String    @db.VarChar(255)
+  description        String?
+  reminder_time      DateTime  @db.Time(6)
+  reminder_date      DateTime? @db.Date
+  is_recurring       Boolean?  @default(false)
+  recurrence_pattern String?   @db.VarChar(50)
+  is_active          Boolean?  @default(true)
+  created_at         DateTime? @default(now()) @db.Timestamp(6)
+  updated_at         DateTime? @default(now()) @db.Timestamp(6)
+  babies             babies?   @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users              users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([user_id], map: "idx_reminders_user_id")
+}
+
+model family_members {
+  id               Int       @id @default(autoincrement())
+  user_id          Int
+  baby_id          Int
+  member_email     String    @db.VarChar(255)
+  member_name      String?   @db.VarChar(255)
+  access_level     String?   @default("viewer") @db.VarChar(50)
+  invitation_token String?   @unique @db.VarChar(255)
+  is_accepted      Boolean?  @default(false)
+  invited_at       DateTime? @default(now()) @db.Timestamp(6)
+  accepted_at      DateTime? @db.Timestamp(6)
+  babies           babies    @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users            users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model daily_plans {
+  id         Int       @id @default(autoincrement())
+  baby_id    Int
+  plan_date  DateTime  @db.Date
+  activities Int[]
+  status     String?   @default("pending") @db.VarChar(20)
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  updated_at DateTime? @default(now()) @db.Timestamp(6)
+  babies     babies    @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([baby_id, plan_date])
+  @@index([baby_id], map: "idx_daily_plans_baby_id")
+  @@index([plan_date], map: "idx_daily_plans_plan_date")
+}

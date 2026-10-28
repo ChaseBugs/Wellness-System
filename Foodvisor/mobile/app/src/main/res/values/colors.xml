@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sky">#EBF8FF</color>
+    <color name="blush">#FFF7F8</color>
+    <color name="paper">#FFFFFF</color>
+    <color name="card_soft">#F5F9FD</color>
+    <color name="navy">#223447</color>
+    <color name="ink">#2D3D52</color>
+    <color name="muted">#92A4BB</color>
+    <color name="rule">#D8E2EF</color>
+    <color name="green">#57CB6B</color>
+    <color name="green_soft">#D3F6DA</color>
+    <color name="protein">#FFE0E0</color>
+    <color name="fat">#FFF6BE</color>
+    <color name="carbs">#DFF7FF</color>
+    <color name="fiber">#FFEACF</color>
+
+    <color name="paper_deep">#F5F5F5</color>
+</resources>

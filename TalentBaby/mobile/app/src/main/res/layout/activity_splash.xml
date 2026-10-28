@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingHorizontal="48dp">
+
+        <ImageView
+            android:layout_width="176dp"
+            android:layout_height="132dp"
+            android:src="@drawable/ic_app_logo"
+            android:alpha="0.85"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BabyG"
+            android:textSize="58sp"
+            android:textStyle="bold"
+            android:textColor="#4E72B7"
+            android:layout_marginTop="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingBottom="120dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/google_play_2022"
+            android:textSize="24sp"
+            android:textColor="@color/home_text_dark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BEST OF 2022"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/home_text_dark"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+</FrameLayout>

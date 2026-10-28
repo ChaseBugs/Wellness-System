@@ -1,0 +1,157 @@
+model articles {
+  id                      Int                       @id @default(autoincrement())
+  title                   String                    @db.VarChar(255)
+  content                 String
+  category                String?                   @db.VarChar(50)
+  author                  String?                   @db.VarChar(255)
+  image_url               String?
+  video_url               String?
+  reading_time_minutes    Int?
+  is_featured             Boolean?                  @default(false)
+  view_count              Int?                      @default(0)
+  created_at              DateTime?                 @default(now()) @db.Timestamp(6)
+  updated_at              DateTime?                 @default(now()) @db.Timestamp(6)
+  language                String                    @default("en") @db.Char(2)
+  doctor_name             String?                   @db.VarChar(255)
+  doctor_credentials      String?                   @db.VarChar(255)
+  age_min_months          Int?                      @default(0)
+  age_max_months          Int?                      @default(60)
+  doctor_verified         Boolean?                  @default(false)
+  article_bookmarks       article_bookmarks[]
+  article_reading_history article_reading_history[]
+
+  @@index([age_min_months, age_max_months], map: "idx_articles_age_range")
+  @@index([category], map: "idx_articles_category")
+  @@index([language], map: "idx_articles_lang")
+}
+
+model article_bookmarks {
+  id         Int       @id @default(autoincrement())
+  user_id    Int
+  article_id Int
+  created_at DateTime? @default(now()) @db.Timestamp(6)
+  articles   articles  @relation(fields: [article_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users      users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([user_id, article_id])
+}
+
+model article_reading_history {
+  id         Int       @id @default(autoincrement())
+  user_id    Int
+  article_id Int
+  read_at    DateTime? @default(now()) @db.Timestamp(6)
+  articles   articles  @relation(fields: [article_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users      users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model bedtime_stories {
+  id               Int               @id @default(autoincrement())
+  title            String            @db.VarChar(255)
+  description      String?
+  content          String?
+  category         String?           @db.VarChar(100)
+  age_min_months   Int?
+  age_max_months   Int?
+  audio_url        String?
+  image_url        String?
+  duration_minutes Int?
+  author           String?           @db.VarChar(255)
+  is_featured      Boolean?          @default(false)
+  created_at       DateTime?         @default(now()) @db.Timestamp(6)
+  updated_at       DateTime?         @default(now()) @db.Timestamp(6)
+  language         String            @default("en") @db.Char(2)
+  story_favorites  story_favorites[]
+
+  @@index([age_min_months, age_max_months], map: "idx_bedtime_stories_age")
+  @@index([category], map: "idx_bedtime_stories_category")
+  @@index([language], map: "idx_bedtime_stories_lang")
+}
+
+model story_categories {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique @db.VarChar(100)
+  description String?
+  icon_url    String?
+  created_at  DateTime? @default(now()) @db.Timestamp(6)
+}
+
+model story_favorites {
+  id              Int             @id @default(autoincrement())
+  user_id         Int
+  story_id        Int
+  created_at      DateTime?       @default(now()) @db.Timestamp(6)
+  bedtime_stories bedtime_stories @relation(fields: [story_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  users           users           @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([user_id, story_id])
+  @@index([user_id], map: "idx_story_favorites_user_id")
+}
+
+model sleep_guides {
+  id                       Int       @id @default(autoincrement())
+  title                    String    @db.VarChar(255)
+  age_min_months           Int
+  age_max_months           Int?
+  description              String?
+  overview                 String?
+  tips                     String[]
+  schedule_recommendations Json?
+  common_challenges        String[]
+  created_at               DateTime? @default(now()) @db.Timestamp(6)
+  updated_at               DateTime? @default(now()) @db.Timestamp(6)
+  language                 String    @default("en") @db.Char(2)
+
+  @@index([age_min_months, age_max_months], map: "idx_sleep_guides_age")
+  @@index([language], map: "idx_sleep_guides_lang")
+}
+
+model feeding_guides {
+  id                            Int       @id @default(autoincrement())
+  title                         String    @db.VarChar(255)
+  age_min_months                Int
+  age_max_months                Int?
+  description                   String?
+  overview                      String?
+  tips                          String[]
+  schedule_recommendations      Json?
+  food_introduction_timeline    Json?
+  adequacy_assessment_questions Json?
+  created_at                    DateTime? @default(now()) @db.Timestamp(6)
+  updated_at                    DateTime? @default(now()) @db.Timestamp(6)
+  language                      String    @default("en") @db.Char(2)
+
+  @@index([age_min_months, age_max_months], map: "idx_feeding_guides_age")
+  @@index([language], map: "idx_feeding_guides_lang")
+}
+
+model nutrition_guides {
+  id               Int       @id @default(autoincrement())
+  title            String    @db.VarChar(255)
+  description      String?
+  trimester        Int
+  content          String
+  meal_suggestions String[]
+  recipes          String[]
+  image_url        String?
+  created_at       DateTime? @default(now()) @db.Timestamp(6)
+  updated_at       DateTime? @default(now()) @db.Timestamp(6)
+  language         String    @default("en") @db.Char(2)
+
+  @@index([language], map: "idx_nutrition_guides_lang")
+}
+
+model daily_updates_content {
+  id            Int       @id @default(autoincrement())
+  age_in_months Int
+  content_type  String    @db.VarChar(50)
+  title         String?   @db.VarChar(255)
+  content       String
+  image_url     String?
+  video_url     String?
+  created_at    DateTime? @default(now()) @db.Timestamp(6)
+  updated_at    DateTime? @default(now()) @db.Timestamp(6)
+  language      String    @default("en") @db.Char(2)
+
+  @@index([language], map: "idx_daily_updates_lang")
+}

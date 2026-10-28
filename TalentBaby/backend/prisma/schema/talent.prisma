@@ -1,0 +1,104 @@
+model talent_categories {
+  id                   Int                    @id @default(autoincrement())
+  name                 String                 @unique @db.VarChar(100)
+  description          String?
+  icon_url             String?
+  created_at           DateTime?              @default(now()) @db.Timestamp(6)
+  ai_insights          ai_insights[]
+  assessment_questions assessment_questions[]
+  talent_assessments   talent_assessments[]
+  talent_missions      talent_missions[]
+  talent_progress      talent_progress[]
+}
+
+model talent_assessments {
+  id                 Int                  @id @default(autoincrement())
+  baby_id            Int
+  talent_category_id Int
+  assessment_date    DateTime             @db.Date
+  age_in_months      Int
+  score              Int?
+  observations       String?
+  recommendations    String?
+  created_at         DateTime?            @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?            @default(now()) @db.Timestamp(6)
+  assessment_answers assessment_answers[]
+  babies             babies               @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  talent_categories  talent_categories    @relation(fields: [talent_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([baby_id], map: "idx_talent_assessments_baby_id")
+}
+
+model talent_missions {
+  id                     Int               @id @default(autoincrement())
+  baby_id                Int
+  talent_category_id     Int
+  mission_title          String            @db.VarChar(255)
+  mission_description    String?
+  suggested_activities   Int[]
+  start_date             DateTime          @db.Date
+  target_completion_date DateTime?         @db.Date
+  completed_date         DateTime?         @db.Date
+  status                 String?           @default("pending") @db.VarChar(20)
+  created_at             DateTime?         @default(now()) @db.Timestamp(6)
+  updated_at             DateTime?         @default(now()) @db.Timestamp(6)
+  babies                 babies            @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  talent_categories      talent_categories @relation(fields: [talent_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model talent_progress {
+  id                  Int               @id @default(autoincrement())
+  baby_id             Int
+  talent_category_id  Int
+  current_level       String?           @db.VarChar(50)
+  progress_percentage Int?              @default(0)
+  last_activity_date  DateTime?         @db.Date
+  badges_earned       String[]
+  created_at          DateTime?         @default(now()) @db.Timestamp(6)
+  updated_at          DateTime?         @default(now()) @db.Timestamp(6)
+  babies              babies            @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  talent_categories   talent_categories @relation(fields: [talent_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([baby_id, talent_category_id])
+  @@index([baby_id], map: "idx_talent_progress_baby_id")
+}
+
+model assessment_questions {
+  id                   Int                  @id @default(autoincrement())
+  talent_category_id   Int
+  question_text        String
+  question_type        String?              @db.VarChar(50)
+  options              Json?
+  age_range_min_months Int?
+  age_range_max_months Int?
+  weight               Int?                 @default(1)
+  created_at           DateTime?            @default(now()) @db.Timestamp(6)
+  assessment_answers   assessment_answers[]
+  talent_categories    talent_categories    @relation(fields: [talent_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model assessment_answers {
+  id                   Int                  @id @default(autoincrement())
+  assessment_id        Int
+  question_id          Int
+  answer_value         String?
+  created_at           DateTime?            @default(now()) @db.Timestamp(6)
+  talent_assessments   talent_assessments   @relation(fields: [assessment_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  assessment_questions assessment_questions @relation(fields: [question_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model ai_insights {
+  id                         Int                @id @default(autoincrement())
+  baby_id                    Int
+  insight_type               String?            @db.VarChar(50)
+  title                      String?            @db.VarChar(255)
+  content                    String?
+  related_talent_category_id Int?
+  related_activity_ids       Int[]
+  generated_at               DateTime?          @default(now()) @db.Timestamp(6)
+  viewed                     Boolean?           @default(false)
+  confidence_score           Decimal?           @db.Decimal(3, 2)
+  source                     String?            @db.VarChar(50)
+  babies                     babies             @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  talent_categories          talent_categories? @relation(fields: [related_talent_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}

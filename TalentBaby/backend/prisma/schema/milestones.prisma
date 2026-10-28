@@ -1,0 +1,64 @@
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model milestone_definitions {
+  id               Int               @id @default(autoincrement())
+  month            Int
+  milestone_type   String            @db.VarChar(50)
+  title            String            @db.VarChar(255)
+  description      String
+  question         String?
+  related_activity String?           @db.VarChar(255)
+  display_order    Int               @default(0)
+  doctor_verified  Boolean           @default(false)
+  created_at       DateTime?         @default(now()) @db.Timestamp(6)
+  updated_at       DateTime?         @default(now()) @db.Timestamp(6)
+  baby_milestones  baby_milestones[]
+
+  @@index([month], map: "idx_milestone_definitions_month")
+  @@index([milestone_type], map: "idx_milestone_definitions_type")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model baby_milestones {
+  id                      Int                   @id @default(autoincrement())
+  baby_id                 Int
+  milestone_definition_id Int
+  status                  String                @db.VarChar(10)
+  achieved_date           DateTime?             @db.Date
+  notes                   String?
+  created_at              DateTime?             @default(now()) @db.Timestamp(6)
+  updated_at              DateTime?             @default(now()) @db.Timestamp(6)
+  babies                  babies                @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  milestone_definitions   milestone_definitions @relation(fields: [milestone_definition_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([baby_id, milestone_definition_id])
+  @@index([baby_id], map: "idx_baby_milestones_baby_id")
+  @@index([milestone_definition_id], map: "idx_baby_milestones_def_id")
+}
+
+model milestones {
+  id                        Int                @id @default(autoincrement())
+  baby_id                   Int
+  milestone_type            String             @db.VarChar(50)
+  title                     String             @db.VarChar(255)
+  description               String?
+  expected_age_range_months Int?
+  achieved_date             DateTime?          @db.Date
+  notes                     String?
+  created_at                DateTime?          @default(now()) @db.Timestamp(6)
+  updated_at                DateTime?          @default(now()) @db.Timestamp(6)
+  milestone_videos          milestone_videos[]
+  babies                    babies             @relation(fields: [baby_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([baby_id], map: "idx_milestones_baby_id")
+}
+
+model milestone_videos {
+  id           Int        @id @default(autoincrement())
+  milestone_id Int
+  memory_id    Int
+  created_at   DateTime?  @default(now()) @db.Timestamp(6)
+  memories     memories   @relation(fields: [memory_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  milestones   milestones @relation(fields: [milestone_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([milestone_id, memory_id])
+}

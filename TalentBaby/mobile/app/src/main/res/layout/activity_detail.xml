@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarDetail"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:background="@color/primary_container"
+        app:elevation="0dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/primary_container"
+                android:contentDescription="@string/activity_details"
+                android:scaleType="centerCrop" />
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="start|top"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="44dp"
+                android:background="@drawable/circle_gray_button"
+                app:contentInsetStartWithNavigation="0dp"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_back"
+                app:navigationIconTint="@color/white" />
+        </FrameLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="32dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="34dp"
+                android:paddingEnd="30dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView android:layout_width="30dp" android:layout_height="30dp" android:src="@drawable/ic_star_outline_teal" android:contentDescription="star" />
+                    <ImageView android:layout_width="30dp" android:layout_height="30dp" android:layout_marginStart="4dp" android:src="@drawable/ic_star_outline_teal" android:contentDescription="star" />
+                    <ImageView android:layout_width="30dp" android:layout_height="30dp" android:layout_marginStart="4dp" android:src="@drawable/ic_star_outline_teal" android:contentDescription="star" />
+                    <ImageView android:layout_width="30dp" android:layout_height="30dp" android:layout_marginStart="4dp" android:src="@drawable/ic_star_outline_teal" android:contentDescription="star" />
+                    <ImageView android:layout_width="30dp" android:layout_height="30dp" android:layout_marginStart="4dp" android:src="@drawable/ic_star_outline_teal" android:contentDescription="star" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginEnd="28dp"
+                    android:contentDescription="Bookmark"
+                    android:src="@drawable/ic_bookmark_outline" />
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:contentDescription="Share"
+                    android:src="@drawable/ic_share_outline_teal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="28dp"
+                android:paddingEnd="28dp">
+
+                <TextView
+                    android:id="@+id/textDoneByBabies"
+                    android:layout_width="112dp"
+                    android:layout_height="wrap_content"
+                    android:text="Done by 10328 Babies"
+                    android:textColor="@color/home_text_muted"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="58dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="@color/home_text_muted" />
+
+                <TextView
+                    android:id="@+id/btnTooEasy"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_teal_outline_pill"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/too_easy"
+                    android:textColor="@color/home_teal"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/btnTooHard"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_teal_outline_pill"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/too_hard"
+                    android:textColor="@color/home_teal"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutVerified"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/layoutFrequency"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/textFrequency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textSectionCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="32dp"
+                android:paddingTop="22dp"
+                android:paddingEnd="32dp"
+                android:text="Memory and Attention"
+                android:textColor="#FF8179"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="32dp"
+                android:paddingTop="18dp"
+                android:paddingEnd="32dp"
+                android:textColor="#6B8FCD"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.18"
+                android:paddingStart="32dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="32dp"
+                android:textColor="@color/home_text_muted"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="32dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="32dp"
+                android:text="@string/frequency"
+                android:textColor="@color/home_text_dark"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="32dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="32dp"
+                android:text="@string/once_a_day"
+                android:textColor="@color/home_text_muted"
+                android:textSize="19sp" />
+
+            <TextView
+                android:id="@+id/labelBenefits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="32dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="32dp"
+                android:text="@string/benefits_label"
+                android:textColor="@color/home_text_dark"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textBenefits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.35"
+                android:paddingStart="32dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="32dp"
+                android:textColor="@color/home_text_muted"
+                android:textSize="19sp"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/dividerMaterials"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/labelMaterials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="32dp"
+                android:paddingTop="18dp"
+                android:paddingEnd="32dp"
+                android:text="@string/materials_label"
+                android:textColor="@color/home_text_dark"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textMaterials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingMultiplier="1.35"
+                android:paddingStart="32dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="32dp"
+                android:textColor="@color/home_text_muted"
+                android:textSize="19sp"
+                android:visibility="gone" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonComplete"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+                android:backgroundTint="@color/home_teal"
+                android:text="@string/mark_done"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/home_teal"
+        android:visibility="gone" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,350 @@
+/* ─────────────────────────────────────────────────────────────
+   FoodVisor / Caroli Analyze — design tokens
+   "Almanac" aesthetic: bone paper, hairline rules, serif numerics
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* Smartify palette — clean white surfaces, urbanist greyscale */
+  --paper:        #ffffff;
+  --paper-deep:   #f5f5f5;   /* greyscale 100 */
+  --paper-edge:   #eeeeee;   /* greyscale 200 */
+  --card:         #fafafa;   /* greyscale 50 */
+  --card-soft:    #f5f5f5;
+  --ink:          #212121;   /* greyscale 900 */
+  --ink-2:        #424242;
+  --ink-3:        #616161;
+  --ink-4:        #9e9e9e;
+  --rule:         #e0e0e0;
+  --rule-soft:    #eeeeee;
+
+  /* Primary accent — Smartify primary blue */
+  --persimmon:    #405ff2;
+  --persimmon-d:  #334cc2;
+  --persimmon-l:  #f0f2fe;
+
+  /* Status (Smartify) */
+  --moss:         #12d18e;   /* success */
+  --moss-l:       #ebf8f3;
+  --ochre:        #facc15;   /* warning */
+  --ochre-l:      #fffceb;
+  --berry:        #f75555;   /* error */
+  --berry-l:      #ffefee;
+  --slate:        #35383f;
+
+  /* Type — Smartify uses Urbanist as primary */
+  --serif:  "Urbanist", "Plus Jakarta Sans", system-ui, sans-serif;
+  --sans:   "Urbanist", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --mono:   "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* Font face overrides if loaded via Google Fonts */
+.fv {
+  font-family: var(--sans);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
+}
+
+.fv * { box-sizing: border-box; }
+
+.fv-screen {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Headlines — Urbanist Bold */
+.fv h1, .fv h2, .fv h3, .fv .display {
+  font-family: var(--sans);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+/* Caps labels — mono */
+.fv-cap {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.fv-cap-ink { color: var(--ink-2); }
+.fv-num {
+  font-family: var(--sans);
+  font-feature-settings: "lnum" 1, "tnum" 1;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.fv-mono {
+  font-family: var(--mono);
+  font-feature-settings: "tnum" 1;
+}
+
+/* Hairline rules */
+.fv-rule {
+  height: 1px;
+  background: var(--rule);
+  border: 0;
+}
+.fv-rule-soft { background: var(--rule-soft); }
+.fv-vrule {
+  width: 1px;
+  background: var(--rule);
+  align-self: stretch;
+}
+
+/* Card surface — Smartify uses larger 24px radius */
+.fv-card {
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  border-radius: 24px;
+}
+
+/* Tap chip */
+.fv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--card);
+  font-size: 12px;
+  color: var(--ink-2);
+  font-family: var(--sans);
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+.fv-chip[data-on="true"] {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* Primary button */
+.fv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 18px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 0;
+  cursor: pointer;
+  user-select: none;
+}
+.fv-btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+.fv-btn-accent {
+  background: var(--persimmon);
+  color: #fff;
+}
+
+/* Bottom nav */
+.fv-nav {
+  display: flex;
+  align-items: stretch;
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+  height: 68px;
+  flex-shrink: 0;
+}
+.fv-nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  position: relative;
+}
+.fv-nav-item[data-on="true"] {
+  color: var(--ink);
+}
+.fv-nav-item[data-on="true"]::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 2px;
+  background: var(--persimmon);
+}
+
+/* Tab strip */
+.fv-tabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 1px solid var(--rule);
+  padding: 0 16px;
+}
+.fv-tab {
+  padding: 10px 0;
+  margin-right: 18px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+.fv-tab[data-on="true"] {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+/* Macro pill */
+.fv-macro {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.fv-macro-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--paper-deep);
+  overflow: hidden;
+  position: relative;
+}
+.fv-macro-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+}
+
+/* Disclosure carat */
+.fv-carat::after {
+  content: "›";
+  margin-left: 6px;
+  color: var(--ink-4);
+  font-size: 14px;
+}
+
+/* Number grid divider */
+.fv-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  align-items: center;
+}
+.fv-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr 1px 1fr;
+  align-items: center;
+}
+
+/* Stamp / pill chip — Smartify uses fully rounded */
+.fv-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--persimmon);
+  color: var(--persimmon);
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  background: var(--persimmon-l);
+}
+
+/* Striped placeholder for imagery */
+.fv-image-slot {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      var(--paper-deep) 0 8px,
+      var(--paper-edge) 8px 16px
+    );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* List row */
+.fv-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.fv-row:last-child { border-bottom: 0; }
+
+/* Scrollbars off in artboards */
+.fv-screen::-webkit-scrollbar { display: none; }
+.fv-screen { scrollbar-width: none; }
+.fv-body { flex: 1; overflow-y: auto; overflow-x: hidden; }
+.fv-body::-webkit-scrollbar { display: none; }
+
+/* Field — Smartify uses 16px radius */
+.fv-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 18px;
+  background: var(--card);
+  border: 1px solid var(--rule-soft);
+  border-radius: 16px;
+}
+.fv-input {
+  border: 0;
+  background: transparent;
+  outline: none;
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  width: 100%;
+}
+
+/* Code block */
+.fv-code {
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.6;
+  background: #1c1611;
+  color: #e6dfcb;
+  padding: 12px 14px;
+  border-radius: 8px;
+  white-space: pre;
+  overflow: hidden;
+}
+.fv-code .k { color: #e0a575; }
+.fv-code .s { color: #a8c89a; }
+.fv-code .n { color: #d4b878; }
+.fv-code .c { color: #6f6354; }
+.fv-code .p { color: #c8b896; }
