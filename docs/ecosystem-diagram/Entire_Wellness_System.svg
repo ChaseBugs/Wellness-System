@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1550" viewBox="0 0 2000 1550" role="img" aria-labelledby="title desc">
+<title id="title">Entire Wellness System: 20 connected mobile apps</title>
+<desc id="desc">Five wellness categories with four apps each. A shared account, consented exchange, cloud backup, content, support and subscription hub connects them. Smartwatch Sync is a mobile bridge to wearable data; Medicine Store is shown as user-reported existing.</desc>
+<defs><style>
+  text{font-family:Arial,Helvetica,sans-serif}.title{font-size:46px;font-weight:700;fill:#fff}.sub{font-size:20px;fill:#d8e6ef}.section{font-size:17px;font-weight:800;letter-spacing:1.5px;fill:#557084}.cat{font-size:20px;font-weight:800;letter-spacing:1.1px}.app{font-size:21px;font-weight:700;fill:#173047}.detail{font-size:16px;fill:#5b7082}.chip{font-size:12px;font-weight:800;letter-spacing:.6px}.hub{font-size:27px;font-weight:800;fill:#173047}.hubsub{font-size:17px;fill:#516a7b}.journey{font-size:18px;font-weight:800}.flow{font-size:18px;font-weight:700;fill:#16314a}.foot{font-size:15px;fill:#667d8e}
+</style><marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M1 1 L10 6 L1 11 Z" fill="#8aa4b9"/></marker></defs>
+<rect width="2000" height="1550" fill="#f4f7fb"/><rect width="2000" height="150" fill="#153550"/>
+<text class="title" x="52" y="67">Entire Wellness System</text>
+<text class="sub" x="54" y="108">20 connected mobile apps · 5 categories × 4 apps · one consent-aware wellness ecosystem</text>
+<text class="section" x="52" y="184">MOBILE APP PORTFOLIO</text>
+<rect x="48" y="208" width="360" height="540" rx="20" fill="#fff" stroke="#d8e2e9" stroke-width="2"/>
+<rect x="48" y="208" width="360" height="57" rx="20" fill="#e9f8f3"/>
+<rect x="48" y="248" width="360" height="17" fill="#e9f8f3"/>
+<rect x="48" y="208" width="7" height="540" rx="3" fill="#2c9a81"/>
+<text class="cat" x="72" y="245" fill="#2c9a81">FAMILY &amp; GROWTH</text>
+<rect x="68" y="280" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="84" y="312">TalentBaby / BabyGrow</text>
+<text class="detail" x="84" y="338">Baby records · caregiver sharing</text>
+<rect x="317" y="347" width="54" height="20" rx="10" fill="#d9f6e9"/>
+<text class="chip" x="344" y="361" text-anchor="middle" fill="#0c7252">CODE</text>
+<rect x="68" y="391" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="84" y="423">HeightIncrease</text>
+<text class="detail" x="84" y="449">Growth logs · posture programs</text>
+<rect x="317" y="458" width="54" height="20" rx="10" fill="#d9f6e9"/>
+<text class="chip" x="344" y="472" text-anchor="middle" fill="#0c7252">CODE</text>
+<rect x="68" y="502" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="84" y="534">Kids Nutrition</text>
+<text class="detail" x="84" y="560">Age-based meals · allergy filters</text>
+<rect x="299" y="569" width="72" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="335" y="583" text-anchor="middle" fill="#566475">PLANNED</text>
+<rect x="68" y="613" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="84" y="645">Pregnancy Tracker</text>
+<text class="detail" x="84" y="671">Weeks · appointments · checklists</text>
+<rect x="299" y="680" width="72" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="335" y="694" text-anchor="middle" fill="#566475">PLANNED</text>
+<path d="M228 749 V810" stroke="#2c9a81" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+<rect x="434" y="208" width="360" height="540" rx="20" fill="#fff" stroke="#d8e2e9" stroke-width="2"/>
+<rect x="434" y="208" width="360" height="57" rx="20" fill="#fff4e8"/>
+<rect x="434" y="248" width="360" height="17" fill="#fff4e8"/>
+<rect x="434" y="208" width="7" height="540" rx="3" fill="#dd8545"/>
+<text class="cat" x="458" y="245" fill="#dd8545">FOOD &amp; NUTRITION</text>
+<rect x="454" y="280" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="470" y="312">Foodvisor</text>
+<text class="detail" x="470" y="338">Food logging · nutrition analysis</text>
+<rect x="703" y="347" width="54" height="20" rx="10" fill="#d9f6e9"/>
+<text class="chip" x="730" y="361" text-anchor="middle" fill="#0c7252">CODE</text>
+<rect x="454" y="391" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="470" y="423">Healthy Recipes</text>
+<text class="detail" x="470" y="449">Recipes · cooking guidance</text>
+<rect x="685" y="458" width="72" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="721" y="472" text-anchor="middle" fill="#566475">PLANNED</text>
+<rect x="454" y="502" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="470" y="534">Meal Planner</text>
+<text class="detail" x="470" y="560">Plans · shopping lists</text>
+<rect x="685" y="569" width="72" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="721" y="583" text-anchor="middle" fill="#566475">PLANNED</text>
+<rect x="454" y="613" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="470" y="645">World Cuisines</text>
+<text class="detail" x="470" y="671">Cultural recipes · cooking mode</text>
+<rect x="685" y="680" width="72" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="721" y="694" text-anchor="middle" fill="#566475">PLANNED</text>
+<path d="M614 749 V810" stroke="#dd8545" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+<rect x="820" y="208" width="360" height="540" rx="20" fill="#fff" stroke="#d8e2e9" stroke-width="2"/>
+<rect x="820" y="208" width="360" height="57" rx="20" fill="#ebf3ff"/>
+<rect x="820" y="248" width="360" height="17" fill="#ebf3ff"/>
+<rect x="820" y="208" width="7" height="540" rx="3" fill="#4c82cc"/>
+<text class="cat" x="844" y="245" fill="#4c82cc">FITNESS &amp; MIND</text>
+<rect x="840" y="280" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="856" y="312">Daily Workout</text>
+<text class="detail" x="856" y="338">Programs · exercise logs</text>
+<rect x="1071" y="347" width="72" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="1107" y="361" text-anchor="middle" fill="#566475">PLANNED</text>
+<rect x="840" y="391" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="856" y="423">Daily Yoga</text>
+<text class="detail" x="856" y="449">Classes · poses · progress</text>
+<rect x="1059" y="458" width="84" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="1101" y="472" text-anchor="middle" fill="#566475">DESIGN REF</text>
+<rect x="840" y="502" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="856" y="534">DownDog</text>
+<text class="detail" x="856" y="560">Personalized yoga · stretching</text>
+<rect x="1059" y="569" width="84" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="1101" y="583" text-anchor="middle" fill="#566475">DESIGN REF</text>
+<rect x="840" y="613" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="856" y="645">Sleep &amp; Meditation</text>
+<text class="detail" x="856" y="671">Sleep habits · breathing · audio</text>
+<rect x="1071" y="680" width="72" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="1107" y="694" text-anchor="middle" fill="#566475">PLANNED</text>
+<path d="M1000 749 V810" stroke="#4c82cc" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+<rect x="1206" y="208" width="360" height="540" rx="20" fill="#fff" stroke="#d8e2e9" stroke-width="2"/>
+<rect x="1206" y="208" width="360" height="57" rx="20" fill="#f5edfb"/>
+<rect x="1206" y="248" width="360" height="17" fill="#f5edfb"/>
+<rect x="1206" y="208" width="7" height="540" rx="3" fill="#a46fc4"/>
+<text class="cat" x="1230" y="245" fill="#a46fc4">BEAUTY &amp; SELF-CARE</text>
+<rect x="1226" y="280" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="1242" y="312">Makeup Tutorial</text>
+<text class="detail" x="1242" y="338">Tutorials · product guides</text>
+<rect x="1445" y="347" width="84" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="1487" y="361" text-anchor="middle" fill="#566475">DESIGN REF</text>
+<rect x="1226" y="391" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="1242" y="423">Skincare Routine</text>
+<text class="detail" x="1242" y="449">AM/PM routines · journal</text>
+<rect x="1457" y="458" width="72" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="1493" y="472" text-anchor="middle" fill="#566475">PLANNED</text>
+<rect x="1226" y="502" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="1242" y="534">Face Yoga</text>
+<text class="detail" x="1242" y="560">Face exercises · progress</text>
+<rect x="1445" y="569" width="84" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="1487" y="583" text-anchor="middle" fill="#566475">DESIGN REF</text>
+<rect x="1226" y="613" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="1242" y="645">HairTry</text>
+<text class="detail" x="1242" y="671">Hairstyle preview · haircare</text>
+<rect x="1445" y="680" width="84" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="1487" y="694" text-anchor="middle" fill="#566475">DESIGN REF</text>
+<path d="M1386 749 V810" stroke="#a46fc4" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+<rect x="1592" y="208" width="360" height="540" rx="20" fill="#fff" stroke="#d8e2e9" stroke-width="2"/>
+<rect x="1592" y="208" width="360" height="57" rx="20" fill="#fff0f2"/>
+<rect x="1592" y="248" width="360" height="17" fill="#fff0f2"/>
+<rect x="1592" y="208" width="7" height="540" rx="3" fill="#d05d70"/>
+<text class="cat" x="1616" y="245" fill="#d05d70">HEALTH &amp; CARE</text>
+<rect x="1612" y="280" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="1628" y="312">Medicine Store</text>
+<text class="detail" x="1628" y="338">Order · refill · pharmacist support</text>
+<rect x="1803" y="347" width="112" height="20" rx="10" fill="#fff0cc"/>
+<text class="chip" x="1859" y="361" text-anchor="middle" fill="#8b6010">USER-REPORTED</text>
+<rect x="1612" y="391" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="1628" y="423">Women's Health</text>
+<text class="detail" x="1628" y="449">Cycle · symptoms · wellness logs</text>
+<rect x="1843" y="458" width="72" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="1879" y="472" text-anchor="middle" fill="#566475">PLANNED</text>
+<rect x="1612" y="502" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="1628" y="534">Health Track AI</text>
+<text class="detail" x="1628" y="560">Signals · trends · reviewed insights</text>
+<rect x="1843" y="569" width="72" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="1879" y="583" text-anchor="middle" fill="#566475">PLANNED</text>
+<rect x="1612" y="613" width="320" height="96" rx="13" fill="#fff" stroke="#dce6ec" stroke-width="1.5"/>
+<text class="app" x="1628" y="645">Smartwatch Sync</text>
+<text class="detail" x="1628" y="671">Wearable connection · health data</text>
+<rect x="1843" y="680" width="72" height="20" rx="10" fill="#edf0f4"/>
+<text class="chip" x="1879" y="694" text-anchor="middle" fill="#566475">PLANNED</text>
+<path d="M1772 749 V810" stroke="#d05d70" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+<rect x="48" y="825" width="1904" height="158" rx="23" fill="#e9f2f8" stroke="#a7c6d9" stroke-width="2"/>
+<text class="hub" x="1000" y="867" text-anchor="middle">ONE WELLNESS ACCOUNT + CONSENTED DATA EXCHANGE</text>
+<text class="hubsub" x="1000" y="898" text-anchor="middle">Offline local storage in every app → secure sync → cloud backup and cross-device restore</text>
+<rect x="80" y="920" width="340" height="42" rx="21" fill="#fff" stroke="#bbd0dc"/>
+<text x="250" y="947" text-anchor="middle" font-size="16" font-weight="700" fill="#2a5068">Identity &amp; family</text>
+<rect x="460" y="920" width="340" height="42" rx="21" fill="#fff" stroke="#bbd0dc"/>
+<text x="630" y="947" text-anchor="middle" font-size="16" font-weight="700" fill="#2a5068">Content &amp; recommendations</text>
+<rect x="840" y="920" width="340" height="42" rx="21" fill="#fff" stroke="#bbd0dc"/>
+<text x="1010" y="947" text-anchor="middle" font-size="16" font-weight="700" fill="#2a5068">Wellness Pass</text>
+<rect x="1220" y="920" width="340" height="42" rx="21" fill="#fff" stroke="#bbd0dc"/>
+<text x="1390" y="947" text-anchor="middle" font-size="16" font-weight="700" fill="#2a5068">Medicine &amp; support</text>
+<rect x="1600" y="920" width="340" height="42" rx="21" fill="#fff" stroke="#bbd0dc"/>
+<text x="1770" y="947" text-anchor="middle" font-size="16" font-weight="700" fill="#2a5068">Privacy controls</text>
+<text class="section" x="52" y="1020">HOW THE APPS INTERACT</text>
+<rect x="48" y="1040" width="617" height="132" rx="18" fill="#fff" stroke="#d7e3e9" stroke-width="2"/>
+<rect x="48" y="1040" width="8" height="132" rx="4" fill="#2c9a81"/>
+<text class="journey" x="75" y="1072" fill="#2c9a81">FAMILY ↔ FOOD</text>
+<text class="flow" x="75" y="1105">Pregnancy Tracker → BabyGrow → Kids Nutrition</text>
+<text class="detail" x="75" y="1134">Age and caregiver context informs relevant meal guidance.</text>
+<rect x="691" y="1040" width="617" height="132" rx="18" fill="#fff" stroke="#d7e3e9" stroke-width="2"/>
+<rect x="691" y="1040" width="8" height="132" rx="4" fill="#dd8545"/>
+<text class="journey" x="718" y="1072" fill="#dd8545">FOOD ↔ FITNESS</text>
+<text class="flow" x="718" y="1105">Foodvisor ↔ Meal Planner ↔ Daily Workout</text>
+<text class="detail" x="718" y="1134">Consented goals connect meals, plans and activity.</text>
+<rect x="1334" y="1040" width="617" height="132" rx="18" fill="#fff" stroke="#d7e3e9" stroke-width="2"/>
+<rect x="1334" y="1040" width="8" height="132" rx="4" fill="#4c82cc"/>
+<text class="journey" x="1361" y="1072" fill="#4c82cc">GROWTH ↔ MOVEMENT</text>
+<text class="flow" x="1361" y="1105">HeightIncrease → DownDog → Daily Yoga</text>
+<text class="detail" x="1361" y="1134">Posture goals lead to personalized and guided sessions.</text>
+<rect x="48" y="1189" width="617" height="132" rx="18" fill="#fff" stroke="#d7e3e9" stroke-width="2"/>
+<rect x="48" y="1189" width="8" height="132" rx="4" fill="#4c82cc"/>
+<text class="journey" x="75" y="1221" fill="#4c82cc">WEARABLE ↔ APPS</text>
+<text class="flow" x="75" y="1254">Smartwatch Sync → Fitness · Sleep · Foodvisor</text>
+<text class="detail" x="75" y="1283">User-approved steps, sleep and heart data sync once.</text>
+<rect x="691" y="1189" width="617" height="132" rx="18" fill="#fff" stroke="#d7e3e9" stroke-width="2"/>
+<rect x="691" y="1189" width="8" height="132" rx="4" fill="#d05d70"/>
+<text class="journey" x="718" y="1221" fill="#d05d70">CARE ↔ MEDICINE</text>
+<text class="flow" x="718" y="1254">Women's Health / Health Track AI → Medicine Store</text>
+<text class="detail" x="718" y="1283">Reminders, refills and support use explicit consent.</text>
+<rect x="1334" y="1189" width="617" height="132" rx="18" fill="#fff" stroke="#d7e3e9" stroke-width="2"/>
+<rect x="1334" y="1189" width="8" height="132" rx="4" fill="#a46fc4"/>
+<text class="journey" x="1361" y="1221" fill="#a46fc4">BEAUTY ↔ WELLNESS</text>
+<text class="flow" x="1361" y="1254">Skincare Routine → Makeup Tutorial → HairTry</text>
+<text class="detail" x="1361" y="1283">Related routines and content are recommended in context.</text>
+<rect x="48" y="1361" width="1904" height="100" rx="18" fill="#e9eef3"/>
+<text x="75" y="1395" font-size="18" font-weight="800" fill="#29475d">Smartwatch Sync</text>
+<text class="detail" x="75" y="1423">Companion mobile app pairs wearables and uses device/OS health permissions; it shares only user-approved activity, sleep and heart data.</text>
+<text class="foot" x="48" y="1490">Status: CODE = inspected repository code; USER-REPORTED = existing Medicine Store per owner; DESIGN REF = screenshots only; PLANNED = proposed app.</text>
+<text class="foot" x="48" y="1517">Other repository concepts/references outside this 20-app core: Caroli Analyze, Cookies &amp; Baking, Haircare Guide, Stretch &amp; Posture, Youcam Makeup.</text>
+<text class="foot" x="48" y="1540">Source: E:\Github\Mobile\Wellness-System · inspected 29 Oct 2026</text>
+</svg>

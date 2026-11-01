@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* Tailwind is used by the BabyGrow pages (ported from the TalentBaby admin). The shell, platform,
+   Foodvisor and HeightIncrease screens use the Foodvisor design system in foodvisor.css. */
+
+.scrollbar-thin::-webkit-scrollbar { width: 6px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: #f1f5f9; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+/* Tailwind's preflight resets browser defaults that foodvisor.css was written against. Restore them in
+   the Foodvisor-style screens; :where() keeps them at zero specificity so Foodvisor's own rules win. */
+.fv { line-height: normal; }
+:where(.fv) :is(h1, h2, h3, h4, h5, h6, strong, b) { font-weight: bold; }
+:where(.fv) h1 { font-size: 2em; margin: 0.67em 0; }
+:where(.fv) h2 { font-size: 1.5em; margin: 0.83em 0; }
+:where(.fv) h3 { font-size: 1.17em; margin: 1em 0; }
+:where(.fv) p { margin: 1em 0; }
+:where(.fv) :is(ul, ol) { margin: 1em 0; padding-left: 40px; }
+:where(.fv) ul { list-style: disc; }
+:where(.fv) ol { list-style: decimal; }
+:where(.fv) :is(img, svg) { display: inline; vertical-align: middle; }
+
+/* Unified shell additions: app switcher and section headers in the sidebar. */
+.app-switcher {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  padding: 0 12px 12px;
+}
+
+.app-switcher a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.app-switcher a.current {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+
+.stat-card strong {
+  display: block;
+  font-size: var(--text-2xl);
+}
+
+.stat-card span {
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+/* ResourceManager rows with extra actions (review/publish) need room; labels never wrap. */
+.data-table th.actions-wide { width: 360px; }
+.row-actions { flex-wrap: wrap; }
+.row-actions button { white-space: nowrap; }
+
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.button-link:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.tab-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
