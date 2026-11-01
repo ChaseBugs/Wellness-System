@@ -23,7 +23,7 @@ export default function HeightResourcePage() {
       filters={config.filters}
       canCreate={config.canCreate ?? true}
       canDelete={config.canDelete ?? true}
-      rowActions={config.routinePath ? routineActions(config.routinePath) : []}
+      rowActions={config.routinePath ? routineActions(config.routinePath) : config.rowActions ?? []}
     />
   );
 }

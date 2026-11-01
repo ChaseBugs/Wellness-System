@@ -526,6 +526,54 @@ async function main(): Promise<void> {
     check(listed.length === 0, "reminders are scoped per app", listed);
   });
 
+  await step("push: due reminder sent once (log provider), rejected tokens pruned, admin-only dispatch", async () => {
+    const e = await register(`smoke-e-${RUN}@test.dev`, "daily-yoga");
+    expectStatus(await api("POST", "/notifications/devices", { token: e.token, app: "daily-yoga", body: { platform: "android", pushToken: `fcm-${RUN}-e-token` } }), 201, "device");
+    expectStatus(await api("POST", "/notifications/devices", { token: e.token, app: "daily-yoga", body: { platform: "ios", pushToken: `invalid-${RUN}-e-token` } }), 201, "stale device");
+    // Due now: the current UTC minute (a reminder stays due for the grace window after its time).
+    const timeOfDay = new Date().toISOString().slice(11, 16);
+    const reminder = expectStatus(
+      await api("POST", "/notifications/reminders", { token: e.token, app: "daily-yoga", body: { title: `Smoke stretch ${RUN}`, timeOfDay, timezone: "UTC" } }),
+      201,
+      "reminder"
+    );
+    expectStatus(await api("POST", "/notifications/dispatch", { token: e.token }), 403, "dispatch is admin-only");
+    expectStatus(await api("POST", "/notifications/dispatch", { token: ctx.admin }), 200, "dispatch");
+    expectStatus(await api("POST", "/notifications/dispatch", { token: ctx.admin }), 200, "second dispatch");
+    // The scheduler may have claimed it first; either way there is exactly one delivery for today.
+    const deliveries = expectStatus(await api("GET", "/notifications/deliveries?appCode=daily-yoga&source=reminder&limit=500", { token: ctx.admin }), 200, "deliveries");
+    const mine = deliveries.filter((delivery: any) => delivery.sourceId === reminder.id);
+    check(mine.length === 1 && mine[0].status === "sent" && mine[0].deviceCount === 1, "one sent delivery to the valid device", mine);
+    const devices = expectStatus(await api("GET", "/notifications/devices", { token: e.token, app: "daily-yoga" }), 200, "devices");
+    check(devices.length === 1 && devices[0].platform === "android", "the rejected token is removed", devices);
+  });
+
+  await step("height-increase campaigns: send once to opted-in users, promotions need marketing opt-in", async () => {
+    const f = await register(`smoke-f-${RUN}@test.dev`, "height-increase");
+    expectStatus(await api("GET", "/apps/height-increase/profile", { token: f.token }), 200, "profile");
+    expectStatus(await api("POST", "/notifications/devices", { token: f.token, app: "height-increase", body: { platform: "android", pushToken: `fcm-${RUN}-f-token` } }), 201, "device");
+    const create = async (type: string) =>
+      expectStatus(
+        await api("POST", "/apps/height-increase/admin/notifications", {
+          token: ctx.admin,
+          body: { title: `Smoke ${type} ${RUN}`, message: "Time for a short stretch.", audience: "all", type, isActive: true }
+        }),
+        201,
+        `create ${type} campaign`
+      );
+    const motivation = await create("motivation");
+    const sent = expectStatus(await api("POST", `/apps/height-increase/admin/notifications/${motivation.id}/send`, { token: ctx.admin }), 200, "send now");
+    check(sent.recipients >= 1 && sent.sent >= 1, "campaign reached the opted-in user", sent);
+    expectStatus(await api("POST", `/apps/height-increase/admin/notifications/${motivation.id}/send`, { token: ctx.admin }), 409, "second send");
+    const deliveries = expectStatus(await api("GET", "/notifications/deliveries?appCode=height-increase&source=campaign&limit=500", { token: ctx.admin }), 200, "deliveries");
+    check(deliveries.some((d: any) => d.sourceId === motivation.id && d.userId === f.id && d.status === "sent"), "delivery recorded for the user", deliveries.slice(0, 3));
+
+    const promotion = await create("promotion");
+    expectStatus(await api("POST", `/apps/height-increase/admin/notifications/${promotion.id}/send`, { token: ctx.admin }), 200, "send promotion");
+    const after = expectStatus(await api("GET", "/notifications/deliveries?appCode=height-increase&source=campaign&limit=500", { token: ctx.admin }), 200, "deliveries");
+    check(!after.some((d: any) => d.sourceId === promotion.id && d.userId === f.id), "no promotion without marketing opt-in", after.slice(0, 3));
+  });
+
   await step("babygrow: caregiver sharing, role checks, care logs, premium growth report, milestones", async () => {
     const child = expectStatus(await api("POST", "/apps/babygrow/children", { token: ctx.b.token, body: { name: "Mina", birthDate: daysAgo(300), sex: "female" } }), 201, "child");
     check(child.myRole === "owner" && child.ageMonths >= 9, "owner and age", child);

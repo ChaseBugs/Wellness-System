@@ -14,6 +14,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 public final class Ui {
+    /** The design's headline face: condensed bold for page titles, card titles, numbers and buttons. */
+    public static final Typeface CONDENSED_BOLD = Typeface.create("sans-serif-condensed", Typeface.BOLD);
+
     private Ui() {
     }
 
@@ -32,8 +35,14 @@ public final class Ui {
     }
 
     public static TextView title(Activity activity, String value) {
-        TextView view = text(activity, value, 28, Palette.TEXT, Typeface.BOLD);
+        TextView view = heading(activity, value, 25, Palette.TEXT);
         view.setLineSpacing(0, 0.96f);
+        return view;
+    }
+
+    public static TextView heading(Activity activity, String value, int sp, int color) {
+        TextView view = text(activity, value, sp, color, Typeface.BOLD);
+        view.setTypeface(CONDENSED_BOLD);
         return view;
     }
 
@@ -77,7 +86,7 @@ public final class Ui {
     }
 
     public static TextView button(Activity activity, String label) {
-        TextView button = text(activity, label, 22, ColorCompat.WHITE, Typeface.BOLD);
+        TextView button = heading(activity, label, 22, ColorCompat.WHITE);
         button.setGravity(Gravity.CENTER);
         button.setBackground(bg(Palette.BLUE, 34, activity));
         button.setPadding(dp(activity, 20), dp(activity, 16), dp(activity, 20), dp(activity, 16));

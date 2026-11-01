@@ -31,7 +31,7 @@ public class SplashActivity extends BaseActivity {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        TextView subtitle = Ui.text(this, "Your taller future is loading - hit 'start' to boost your height!", 19,
+        TextView subtitle = Ui.text(this, "Stand tall with daily posture and stretching routines.", 19,
                 android.graphics.Color.WHITE, Typeface.ITALIC);
         subtitle.setGravity(Gravity.CENTER);
         subtitle.setPadding(0, Ui.dp(this, 18), 0, Ui.dp(this, 40));
@@ -58,6 +58,6 @@ public class SplashActivity extends BaseActivity {
             return;
         }
         navigated = true;
-        finishOpen(OnboardingActivity.class);
+        finishOpen(profiles.isOnboarded() ? PlanActivity.class : OnboardingActivity.class);
     }
 }

@@ -2,11 +2,14 @@ import { createServer } from "http";
 import { createApp } from "./app.js";
 import { closeDatabase, connectDatabase, getPool } from "./config/database.js";
 import { env } from "./config/env.js";
+import { modules } from "./modules/module-registry.js";
+import { startScheduler } from "./shared/scheduler.js";
 import logger, { EMOJIS } from "./utils/logger.js";
 import { runMigrations } from "./utils/migrations.js";
 
 const app = createApp();
 const server = createServer(app);
+let stopScheduler: () => void = () => undefined;
 
 async function bootstrap() {
   await connectDatabase();
@@ -21,11 +24,13 @@ async function bootstrap() {
       apiDocs: `http://localhost:${env.port}/api-docs`,
       apiPrefix: env.apiPrefix
     });
+    stopScheduler = startScheduler(modules);
   });
 }
 
 function shutdown(signal: string) {
   logger.server.shutdown(signal);
+  stopScheduler();
   server.close(() => {
     closeDatabase().finally(() => process.exit(0));
   });

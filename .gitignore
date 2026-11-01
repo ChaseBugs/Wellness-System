@@ -250,3 +250,4 @@ docker-compose.override.yml
 .turbo/
 .nx/
 lerna-debug.log
+/mobile/TalentBaby/scripts/__pycache__

@@ -13,4 +13,12 @@ export interface WellnessModule {
   router: Router;
   appCode?: AppCode;
   description: string;
+  /** Background work the server runs on every scheduler tick (see shared/scheduler.ts). */
+  jobs?: ScheduledJob[];
+}
+
+/** A periodic task. It must be idempotent: a tick can repeat after a restart or overlap a manual run. */
+export interface ScheduledJob {
+  name: string;
+  run(now: Date): Promise<unknown>;
 }

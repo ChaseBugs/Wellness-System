@@ -1,6 +1,7 @@
 import type { ContentItem, ContentQuery } from "../../../platform/content/models/content-item.js";
 import type { CreateGoalInput, DailyLog, Goal, UpdateGoalInput, UpsertDailyLogInput } from "../models/daily-log.js";
 import type { Banner, CatalogExercise, CatalogPlan } from "../models/height-catalog.js";
+import type { HeightCampaign } from "../models/height-campaign.js";
 import type { HeightProfile, UpdateHeightProfileInput } from "../models/height-profile.js";
 
 export interface IHeightProfileRepository {
@@ -41,4 +42,15 @@ export interface MeasurementStore {
 /** Published Content Factory items (implemented by ContentItemService). */
 export interface ArticleCatalog {
   listPublishedItems(query: Omit<ContentQuery, "statuses">): Promise<{ items: ContentItem[]; total: number }>;
+}
+
+/** Admin push campaigns. Claiming sets sent_at first, so a campaign is never sent twice. */
+export interface ICampaignRepository {
+  /** Active, unsent campaigns scheduled in (now - maxAgeHours, now]; older ones are left unsent. */
+  claimDue(now: Date, maxAgeHours: number): Promise<HeightCampaign[]>;
+  /** Claims one campaign for an immediate send; null when it is missing, inactive or already sent. */
+  claim(id: string): Promise<HeightCampaign | null>;
+  find(id: string): Promise<HeightCampaign | null>;
+  /** Active HeightIncrease users who allow notifications; "inactive" = no daily log in 7 days. */
+  audienceUserIds(audience: HeightCampaign["audience"]): Promise<string[]>;
 }

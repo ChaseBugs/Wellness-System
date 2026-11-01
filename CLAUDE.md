@@ -12,7 +12,7 @@ admin/                the one admin UI for every app (Next.js 16 + Tailwind, :30
 mobile/               one folder per app; each holds its Android project in android/
   Foodvisor/          android/, design/, docs/, foods data dump
   TalentBaby/         android/, ui/ (design), docs/, feature list ("BabyGrow" in the strategy)
-  HeightIncrease/     android/ (no API calls yet), design/
+  HeightIncrease/     android/, design/
 design-references/    screenshot-only references for future apps (no code)
 docs/                 strategy, architecture, app specs, ecosystem diagram
 ```

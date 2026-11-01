@@ -41,6 +41,14 @@ function jwtSecret(): string {
   return "dev-only-insecure-jwt-secret";
 }
 
+function pushProvider(): "log" | "fcm" {
+  const value = process.env.PUSH_PROVIDER || (isProduction ? "fcm" : "log");
+  if (value !== "log" && value !== "fcm") throw new Error(`PUSH_PROVIDER must be "log" or "fcm", got "${value}"`);
+  // The log provider pretends delivery succeeded, so production must use a real provider.
+  if (value === "log" && isProduction) throw new Error('PUSH_PROVIDER "log" cannot be used in production');
+  return value;
+}
+
 export const env = {
   nodeEnv: resolvedNodeEnv,
   isProduction,
@@ -57,6 +65,15 @@ export const env = {
   bcryptRounds: numberEnv("BCRYPT_ROUNDS", 10),
   // The dev store trusts client payloads, so it can never be enabled in production.
   devStoreEnabled: !isProduction && booleanEnv("DEV_STORE_ENABLED", true),
+  // Background jobs registered by modules (reminder delivery, scheduled campaigns).
+  schedulerEnabled: booleanEnv("SCHEDULER_ENABLED", true),
+  schedulerIntervalSeconds: Math.max(10, numberEnv("SCHEDULER_INTERVAL_SECONDS", 60)),
+  push: {
+    // "log" records sends without a provider and can never run in production; "fcm" is not wired in yet.
+    provider: pushProvider(),
+    // A reminder missed by more than this (server down) is skipped rather than sent late.
+    reminderGraceMinutes: numberEnv("PUSH_REMINDER_GRACE_MINUTES", 30)
+  },
   seed: {
     adminEmail: process.env.SEED_ADMIN_EMAIL || "admin@wellness.local",
     adminPassword: process.env.SEED_ADMIN_PASSWORD || "Admin123!",

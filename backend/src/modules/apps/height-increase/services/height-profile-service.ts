@@ -19,6 +19,24 @@ import type {
 import type { HeightProfile, HeightProfileResponse, UpdateHeightProfileInput } from "../models/height-profile.js";
 
 const DEFAULT_REPORT_DAYS = 30;
+/** Logs read to count the workout streak (a longer streak shows as this many days). */
+const STREAK_WINDOW_DAYS = 366;
+
+/**
+ * Consecutive days with a logged workout, ending today or yesterday (`today` is the client's local
+ * date, so a streak isn't broken by the server's timezone).
+ */
+export function workoutStreak(logs: Array<{ logDate: string; workoutMinutes: number }>, today: string): number {
+  const days = new Set(logs.filter((log) => log.workoutMinutes > 0).map((log) => log.logDate));
+  const shift = (date: string, offset: number) => new Date(Date.parse(`${date}T00:00:00Z`) + offset * 86_400_000).toISOString().slice(0, 10);
+  let cursor = days.has(today) ? today : shift(today, -1);
+  let streak = 0;
+  while (days.has(cursor)) {
+    streak++;
+    cursor = shift(cursor, -1);
+  }
+  return streak;
+}
 
 /**
  * The HeightIncrease user's own data: profile, daily logs, goals and reports. Height readings logged
@@ -57,9 +75,10 @@ export class HeightProfileService {
     return this.toResponse(userId, await this.profiles.update(userId, fields));
   }
 
-  async report(userId: string, limit = DEFAULT_REPORT_DAYS): Promise<ReportResponse> {
+  async report(userId: string, limit = DEFAULT_REPORT_DAYS, today = new Date().toISOString().slice(0, 10)): Promise<ReportResponse> {
     const profile = await this.requireActive(userId);
-    const [logs, latest] = await Promise.all([this.logs.listRecent(userId, limit), this.latestMeasurement(userId)]);
+    const [history, latest] = await Promise.all([this.logs.listRecent(userId, Math.max(limit, STREAK_WINDOW_DAYS)), this.latestMeasurement(userId)]);
+    const logs = history.slice(0, limit);
     const sleep = logs.filter((log) => log.sleepHours !== null);
     return {
       summary: {
@@ -67,7 +86,7 @@ export class HeightProfileService {
         averageSleepHours: sleep.length
           ? Math.round((sleep.reduce((total, log) => total + (log.sleepHours ?? 0), 0) / sleep.length) * 10) / 10
           : 0,
-        streakDays: profile.streakDays,
+        streakDays: workoutStreak(history, today),
         currentHeightCm: latest?.heightCm ?? null,
         targetHeightCm: profile.targetHeightCm
       },

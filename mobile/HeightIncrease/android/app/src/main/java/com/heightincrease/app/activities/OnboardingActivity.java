@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.heightincrease.app.model.OnboardingProfile;
+import com.heightincrease.app.repository.RemoteRepository;
 import com.heightincrease.app.ui.Palette;
 import com.heightincrease.app.ui.Ui;
 import com.heightincrease.app.viewmodel.OnboardingViewModel;
@@ -51,6 +52,19 @@ public class OnboardingActivity extends BaseActivity {
         TextView next = Ui.button(this, viewModel.getStep() == 3 ? "LET'S GO" : "NEXT");
         next.setOnClickListener(v -> {
             if (viewModel.next()) {
+                profiles.save(viewModel.getState());
+                if (remote.isSignedIn()) {
+                    remote.syncOnboarding(new RemoteRepository.Callback<Void>() {
+                        @Override
+                        public void onSuccess(Void value) {
+                        }
+
+                        @Override
+                        public void onError(String message) {
+                            // Kept on the device; the next sign-in syncs it.
+                        }
+                    });
+                }
                 finishOpen(PlanActivity.class);
             } else {
                 render();

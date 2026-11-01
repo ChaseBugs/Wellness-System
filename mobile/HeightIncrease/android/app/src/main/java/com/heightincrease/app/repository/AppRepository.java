@@ -2,40 +2,37 @@ package com.heightincrease.app.repository;
 
 import android.graphics.Color;
 
-import com.heightincrease.app.model.Article;
 import com.heightincrease.app.model.PlanCard;
 import com.heightincrease.app.model.ProfileOption;
 import com.heightincrease.app.model.QaItem;
 import com.heightincrease.app.model.ReportMetric;
+import com.heightincrease.app.model.ReportSummary;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class AppRepository {
-    public List<PlanCard> planCards() {
-        return Arrays.asList(
-                new PlanCard("Before age 18", "60 days left", "DAY 1", 0, true),
-                new PlanCard("After age 18", "Mobility and posture routine", "START", 0, false),
-                new PlanCard("My training", "Build your own stretch list", "ADD", 0, false)
-        );
+    /** The user's own plan card, shown after the published training plans. */
+    public PlanCard myTrainingCard() {
+        return new PlanCard(null, "My training", "Build your own stretch list", "ADD", 0, false);
     }
 
-    public List<Article> discoverArticles() {
+    /**
+     * Report tiles, as in the design (WORKOUT, KCAL, DURATION) except KCAL: there is no validated
+     * calorie-burn estimate, so the middle tile shows average sleep. Without an account they stay at zero.
+     */
+    public List<ReportMetric> reportMetrics(ReportSummary summary) {
+        if (summary == null) {
+            return Arrays.asList(
+                    new ReportMetric("0", "WORKOUT"),
+                    new ReportMetric("0.0", "AVG SLEEP H"),
+                    new ReportMetric("00:00", "DURATION"));
+        }
         return Arrays.asList(
-                new Article("High heels make you taller", "Your height can increase 3 inches at average by wearing high heels. What you need to do Try and find...", "heels"),
-                new Article("Stretch can increase your height", "Height increase tips", "stretch"),
-                new Article("Yoga is really helpful!", "Height increase tips", "yoga"),
-                new Article("Practice hanging exercise", "Height increase tips", "hang"),
-                new Article("You need aerobic exercises", "Height increase tips", "swim")
-        );
-    }
-
-    public List<ReportMetric> reportMetrics() {
-        return Arrays.asList(
-                new ReportMetric("0", "WORKOUT"),
-                new ReportMetric("0.00", "KCAL"),
-                new ReportMetric("00:00", "DURATION")
-        );
+                new ReportMetric(String.valueOf(summary.workoutCount), "WORKOUT"),
+                new ReportMetric(String.format(Locale.US, "%.1f", summary.averageSleepHours), "AVG SLEEP H"),
+                new ReportMetric(String.format(Locale.US, "%02d:%02d", summary.workoutMinutes / 60, summary.workoutMinutes % 60), "DURATION"));
     }
 
     public List<ProfileOption> settingsOptions() {

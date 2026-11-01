@@ -4,14 +4,18 @@ import { authenticate, requireRole } from "../../../../middleware/auth.js";
 import { createResourceRouter, createResourceService } from "../../../../shared/resource-kit/resource-router.js";
 import { createRoutineService } from "../../../platform/routine/routine-factory.js";
 import { HEIGHT_ADMIN_RESOURCES, trainingPlansResource } from "../admin/height-resources.js";
+import { param } from "express-validator";
+import { validate } from "../../../../middleware/validate.js";
 import { HeightAdminController } from "../controllers/height-admin-controller.js";
+import { createHeightCampaignService } from "../height-factory.js";
 import { HeightAdminStatsRepository } from "../repositories/height-admin-stats-repository.js";
 import { HeightAdminService } from "../services/height-admin-service.js";
 
 const resourceService = createResourceService();
 const editorGuards = [authenticate, requireRole("editor", "admin")];
 const controller = new HeightAdminController(
-  new HeightAdminService(new HeightAdminStatsRepository(getPool()), resourceService, trainingPlansResource, createRoutineService())
+  new HeightAdminService(new HeightAdminStatsRepository(getPool()), resourceService, trainingPlansResource, createRoutineService()),
+  createHeightCampaignService()
 );
 
 export const adminRouter = Router();
@@ -72,6 +76,20 @@ export const adminRouter = Router();
  *     responses: { 204: { description: Deleted } }
  */
 adminRouter.get("/stats", ...editorGuards, controller.stats);
+
+/**
+ * @openapi
+ * /apps/height-increase/admin/notifications/{id}/send:
+ *   post:
+ *     tags: [HeightIncrease Admin]
+ *     summary: Send a push campaign now (admin; once per campaign)
+ *     security: [{ bearerAuth: [] }]
+ *     parameters: [{ in: path, name: id, required: true, schema: { type: string, format: uuid } }]
+ *     responses:
+ *       200: { description: "Recipients and delivery counts" }
+ *       409: { description: Already sent, or inactive }
+ */
+adminRouter.post("/notifications/:id/send", authenticate, requireRole("admin"), validate([param("id").isUUID()]), controller.sendCampaign);
 // Training plans carry their exercise list; these run before the kit's own create/update.
 adminRouter.post("/training-plans", ...editorGuards, controller.createPlan);
 adminRouter.put("/training-plans/:id", ...editorGuards, controller.updatePlan);

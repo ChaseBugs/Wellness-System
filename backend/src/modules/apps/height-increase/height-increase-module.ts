@@ -3,6 +3,7 @@ import { fixedAppContext } from "../../../middleware/app-context.js";
 import { authenticate } from "../../../middleware/auth.js";
 import type { WellnessModule } from "../../module.js";
 import { createRoutineAppRouter } from "../../platform/routine/routes/routine-app-routes.js";
+import { createHeightCampaignService } from "./height-factory.js";
 import { adminRouter } from "./routes/admin-routes.js";
 import { catalogRouter } from "./routes/catalog-routes.js";
 import { heightMeasurementRouter } from "./routes/height-measurement-routes.js";
@@ -24,6 +25,8 @@ router.use(profileRouter);
 // Posture and activity programs: /routines, /sessions, /progress from the shared Routine Engine.
 router.use(createRoutineAppRouter("height-increase"));
 
+const campaignService = createHeightCampaignService();
+
 export const heightIncreaseModule: WellnessModule = {
   name: "height-increase",
   kind: "app",
@@ -31,5 +34,7 @@ export const heightIncreaseModule: WellnessModule = {
   basePath: "/apps/height-increase",
   router,
   description:
-    "HeightIncrease: measurements and observed trend, daily logs, goals, reports, banners, articles, posture/activity programs and the admin"
+    "HeightIncrease: measurements and observed trend, daily logs, goals, reports, banners, articles, posture/activity programs and the admin",
+  // Scheduled push campaigns (height.notifications with a scheduled_at).
+  jobs: [{ name: "campaigns", run: (now) => campaignService.sendDue(now) }]
 };

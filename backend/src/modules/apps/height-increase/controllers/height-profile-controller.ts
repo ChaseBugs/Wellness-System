@@ -30,7 +30,7 @@ export class HeightProfileController extends BaseController {
 
   report = this.handle(async (req, res) => {
     const limit = this.query(req, "limit");
-    sendSuccess(res, await this.heightProfileService.report(this.userId(req), limit ? Number(limit) : undefined));
+    sendSuccess(res, await this.heightProfileService.report(this.userId(req), limit ? Number(limit) : undefined, this.query(req, "today")));
   });
 
   recordLog = this.handle(async (req, res) => {

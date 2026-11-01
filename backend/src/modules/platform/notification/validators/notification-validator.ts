@@ -5,6 +5,16 @@ export const registerDeviceValidation = [
   body("pushToken").isString().isLength({ min: 10, max: 4096 })
 ];
 
+/** True for an IANA zone name the runtime knows (e.g. "Asia/Seoul"); the scheduler evaluates reminders in it. */
+function isTimeZone(value: string): boolean {
+  try {
+    new Intl.DateTimeFormat("en-US", { timeZone: value });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export const idValidation = [param("id").isUUID()];
 
 const reminderFields = (partial: boolean) => [
@@ -13,7 +23,7 @@ const reminderFields = (partial: boolean) => [
   body("body").optional({ values: "null" }).isString().isLength({ max: 500 }),
   body("daysOfWeek").optional().isArray({ min: 1, max: 7 }),
   body("daysOfWeek.*").isInt({ min: 0, max: 6 }),
-  body("timezone").optional().isString().isLength({ max: 64 }),
+  body("timezone").optional().isString().isLength({ max: 64 }).custom(isTimeZone).withMessage("must be an IANA time zone"),
   body("deepLink").optional({ values: "null" }).isString().isLength({ max: 500 }),
   body("isActive").optional().isBoolean({ strict: true })
 ];

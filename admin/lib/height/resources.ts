@@ -19,6 +19,8 @@ export type HeightResource = {
   canDelete?: boolean;
   /** Routine Engine base path for review/publish actions (exercises and plans only). */
   routinePath?: "/routine/exercises" | "/routine/routines";
+  /** Other per-row actions (e.g. sending a push campaign). */
+  rowActions?: RowAction[];
 };
 
 const options = (values: string[]) => values.map((value) => ({ value, label: value }));
@@ -37,6 +39,19 @@ export function routineActions(routinePath: string): RowAction[] {
     { label: "Archive", tone: "danger", show: (item) => item.status !== "archived", run: (item) => post(item.id, "archive") }
   ];
 }
+
+/** A campaign is sent once, to HeightIncrease users who allow notifications (promotions: marketing opt-in only). */
+const campaignActions: RowAction[] = [
+  {
+    label: "Send now",
+    tone: "primary",
+    show: (item) => isAdmin() && !item.sentAt && Boolean(item.isActive),
+    run: (item) =>
+      window.confirm(`Send "${String(item.title)}" to its audience now? A campaign can only be sent once.`)
+        ? platformFetch(`/apps/height-increase/admin/notifications/${item.id}/send`, { method: "POST" })
+        : Promise.resolve()
+  }
+];
 
 const statusFilter: FilterDef = { type: "select", key: "status", label: "Status", options: options(["draft", "published", "archived"]) };
 
@@ -204,14 +219,17 @@ export const heightResources: Record<string, HeightResource> = {
   },
   notifications: {
     title: "Push campaigns",
-    description: "Admin-authored push messages. Stored for delivery; the push sender is not built yet.",
+    description:
+      "Push messages to HeightIncrease users who allow notifications. Active campaigns go out at their scheduled time (or with Send now), once; promotions reach only users who opted into marketing.",
     endpoint: "/notifications",
     searchPlaceholder: "Search campaigns",
+    rowActions: campaignActions,
     columns: [
       { key: "title", label: "Title" },
       { key: "audience", label: "Audience" },
       { key: "type", label: "Type" },
       { key: "scheduledAt", label: "Scheduled", kind: "date" },
+      { key: "sentAt", label: "Sent", kind: "date" },
       { key: "isActive", label: "Active", kind: "boolean" }
     ],
     fields: [

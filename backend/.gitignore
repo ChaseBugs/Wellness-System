@@ -3,3 +3,5 @@ dist/
 logs/
 .pgdata/
 .env
+# Runtime uploads (admin media and smoke-test images); migrated images live in public/static/<app>/images.
+public/static/uploads/

@@ -14,7 +14,11 @@ export const updateProfileValidation = [
   body("avatarUrl").optional({ values: "null" }).isString().isLength({ max: 1000 })
 ];
 
-export const reportValidation = [query("limit").optional().isInt({ min: 1, max: 366 })];
+export const reportValidation = [
+  query("limit").optional().isInt({ min: 1, max: 366 }),
+  // The client's local date, for the workout streak.
+  query("today").optional().isISO8601({ strict: true }).isLength({ min: 10, max: 10 })
+];
 
 export const recordLogValidation = [
   isoDate(body("date")),

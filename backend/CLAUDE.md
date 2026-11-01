@@ -62,3 +62,5 @@ These are enforced by review, not tooling:
 - Don't add height predictions, growth percentiles or calorie-burn estimates unless they are backed by a validated standard. Nutrition values come from reviewed recipe data or the food reference table, never from guesses.
 - Child and health data never feed recommendations or marketing. Recommendations use only analytics events, installs and the user's opt-out flag.
 - The `dev` purchase store must stay disabled in production. Apple and Google verifiers return 501 until they are really implemented; never trust client receipts unverified.
+- The `log` push provider (pretends delivery succeeded) is refused in production, like the dev store. Push sends go through `notify.deliveries` claims so they stay idempotent; promotional pushes need `marketing_opt_in`, and app campaigns respect the app's own notification setting.
+- Scheduled work goes in a module's `jobs` (see `shared/scheduler.ts`), never in a bare `setInterval`. Jobs must be idempotent.
